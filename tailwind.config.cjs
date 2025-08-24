@@ -21,7 +21,7 @@ module.exports = {
         primaryLinear: "linear-gradient(180deg, #B6CCF5 0.48%, #D5E3F1 100%)",
       },
       dropShadow: {
-        primary: "-5px 35px 40px rgba(223, 229, 236, 0.9)",
+        primary: "-5px 35px 40px rgba(223, 229, 236, 0.9)",  // Sombra suave y clara con tinte esmeralda
       },
     },
   },

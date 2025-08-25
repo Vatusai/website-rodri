@@ -15,6 +15,8 @@ import "aos/dist/aos.css";
 import Preloader from "./components/Preloader";
 // Floating Action Button for better CTA accessibility
 import FloatingActionButton from "./components/FloatingActionButton";
+// Musical Galaxy background component
+import MusicalGalaxy from "./components/MusicalGalaxy";
 
 const App = () => {
   useEffect(() => {
@@ -25,6 +27,9 @@ const App = () => {
   }, []);
   return (
     <div className="">
+      {/* Musical Galaxy Background - animated musical elements */}
+      <MusicalGalaxy />
+      
       {/* Preloader - displays while assets load, then disappears automatically */}
       <Preloader />
       

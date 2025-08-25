@@ -57,11 +57,12 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection("#home")}
-              className={`text-2xl font-bold transition-colors duration-300 ${
+              className={`text-2xl font-Croissant font-normal transition-colors duration-300 ${
                 isScrolled ? "text-dark_primary" : "text-white"
               }`}
+              style={{ letterSpacing: '0.05em' }}
             >
-              FABIAN OROZCO
+              Fabian Orozco
             </button>
           </div>
 
@@ -80,7 +81,7 @@ const Navbar = () => {
                     className={`group flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       isActive
                         ? isScrolled
-                          ? "bg-dark_primary text-white shadow-md"
+                          ? "bg-gray text-white shadow-md"
                           : "bg-white/20 text-white backdrop-blur-sm"
                         : isScrolled
                         ? "text-gray-700 hover:bg-gray-100 hover:text-dark_primary"

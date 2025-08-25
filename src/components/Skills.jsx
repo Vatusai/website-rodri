@@ -47,7 +47,7 @@ const Skills = () => {
           <h6>{selectSkill?.name}</h6>
         </div>
         <br />
-        <ul className="list-decimal px-4 font-Poppins sm:text-sm text-xs !leading-7">
+        <ul className="list-decimal px-4 font-Source sm:text-sm text-xs !leading-7">
           <li>Me encargo de que el volumen de la Música sea el adecuado en cada situación y que la música suene cuando tiene que sonar.</li>
           <li>Colaboro con Músicos de alto nivel que suman a la elegancia y a la exposición artistica</li>
           <li>Sistemas de Sonido BOSE de altisima calidad, con microfonos inalámbricos incluidos en caso de ser necesario.</li>

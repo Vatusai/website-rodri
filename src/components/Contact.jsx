@@ -98,7 +98,6 @@ const handleSubmit = async (e) => {
                     id="mce-EMAIL"
                     value={formData.EMAIL}
                     onChange={handleChange}  // Actualiza el estado al cambiar el valor
-                    required
                     placeholder="Correo Electrónico"
                   />
                   <label htmlFor="mce-MMERGE2">Nombre</label>
@@ -126,7 +125,6 @@ const handleSubmit = async (e) => {
                     id="mce-MMERGE13"
                     value={formData.MMERGE13}
                     onChange={handleChange}
-                    required
                     placeholder="Para ver nuestra disponibilidad"
                   />
                   <label htmlFor="mce-MMERGE10">Hora del Evento</label>
@@ -209,7 +207,7 @@ const handleSubmit = async (e) => {
                   </button>
                   {/* ⬇️ NUEVO BLOQUE DE REDES SOCIALES */}
                   <div className="mt-6"></div>
-                  <h3 className="text-sm font-light font-serif text-black tracking-wide mb-2">También puedes contactarme por:</h3>
+                  <h3 className="text-sm font-Source font-medium text-black tracking-wide mb-2">También puedes contactarme por:</h3>
                   <div className="flex flex-col gap-2">
                      {Contact.social_media.map((item, index) => (
                        <a

@@ -152,16 +152,18 @@
 }
 
 /* =============================================================================
-   TYPOGRAPHY ENHANCEMENTS
+   ELEGANT TYPOGRAPHY ENHANCEMENTS - Musical Portfolio
    ============================================================================= */
 
-/* Enhanced Headings */
+/* Enhanced Section Titles with Croissant One for elegance */
 .section-title {
+  font-family: 'Croissant One', cursive;
   position: relative;
   display: inline-block;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .section-title::after {
@@ -170,8 +172,8 @@
   bottom: -10px;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #000000 0%, #6c757d 50%, #000000 100%);
+  height: 3px;
+  background: linear-gradient(90deg, #0C0A09 0%, #8D6E63 50%, #0C0A09 100%);
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
@@ -182,13 +184,38 @@
   transform: scaleX(1);
 }
 
-/* Subtitle Enhancement */
+/* Subtitle Enhancement with Source Sans Pro */
 .section-subtitle {
+  font-family: 'Source Sans Pro', sans-serif;
   color: #6c757d;
   font-weight: 400;
   letter-spacing: 0.5px;
   margin-bottom: 3rem;
   position: relative;
+}
+
+/* Elegant Name Display */
+.elegant-brand-name {
+  font-family: 'Croissant One', cursive;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Body Text Enhancement */
+.elegant-body-text {
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: #333;
+}
+
+/* Caption Text */
+.elegant-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  color: #6b7280;
 }
 
 /* =============================================================================
@@ -374,7 +401,7 @@
 }
 
 /* =============================================================================
-   RESPONSIVE DESIGN ENHANCEMENTS
+   RESPONSIVE TYPOGRAPHY & DESIGN ENHANCEMENTS
    ============================================================================= */
 
 @media (max-width: 768px) {
@@ -385,6 +412,20 @@
   
   .section-title {
     font-size: 2rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .elegant-brand-name {
+    font-size: 1.5rem;
+    letter-spacing: 0.03em;
   }
   
   .btn-premium, .btn-outline-premium {
@@ -400,6 +441,32 @@
   }
   
   .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .elegant-brand-name {
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+  }
+  
+  h3 {
     font-size: 1.5rem;
   }
 }

@@ -38,7 +38,7 @@ const FloatingActionButton = () => {
       icon: MdEmail,
       label: "Email",
       action: () => window.open("mailto:fabanorgo@gmail.com", "_blank"),
-      bgColor: "bg-blue-500 hover:bg-blue-600",
+      bgColor: "bg-gray hover:bg-blue-600",
       delay: "delay-75",
     },
     {
@@ -52,7 +52,7 @@ const FloatingActionButton = () => {
       icon: MdCall,
       label: "Llamar",
       action: () => window.open("tel:+50664559354", "_blank"),
-      bgColor: "bg-purple-500 hover:bg-purple-600",
+      bgColor: "bg-gray hover:bg-blue-600",
       delay: "delay-150",
     },
   ];
@@ -106,7 +106,7 @@ const FloatingActionButton = () => {
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className={`
-          bg-gradient-to-r from-dark_primary to-blue-600 
+          bg-gradient-to-r from-dark_primary to-yellow-600 
           text-white p-4 rounded-full shadow-2xl 
           transform transition-all duration-300 ease-out
           hover:scale-110 hover:shadow-xl
@@ -139,7 +139,7 @@ const FloatingActionButton = () => {
         </svg>
         
         {/* Pulse animation */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-dark_primary to-blue-600 animate-ping opacity-20"></div>
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-dark_primary to-gray animate-ping opacity-20"></div>
       </button>
 
       {/* Mobile-specific styling */}

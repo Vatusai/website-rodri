@@ -35,20 +35,8 @@ const ContactWizard = () => {
   });
 
   // Validation rules for each step
-  const validateStep = (step) => {
-    switch (step) {
-      case 1:
-        return formData.EMAIL && formData.MMERGE2 && formData.MMERGE14;
-      case 2:
-        return formData.MMERGE13 && formData.MMERGE7;
-      case 3:
-        return formData.MMERGE5 && formData.MMERGE9;
-      case 4:
-        return true; // Optional step
-      default:
-        return false;
-    }
-  };
+  const validateStep = () => true;
+
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -116,27 +104,23 @@ const ContactWizard = () => {
   const steps = [
     { 
       number: 1, 
-      title: "Información Personal", 
+      title: "Datos de contacto", 
       icon: MdPerson,
-      description: "Datos de contacto"
     },
     { 
       number: 2, 
       title: "Detalles del Evento", 
       icon: MdEvent,
-      description: "Fecha y ubicación"
     },
     { 
       number: 3, 
       title: "Servicios Musicales", 
       icon: MdMusicNote,
-      description: "Tipo de servicio"
     },
     { 
       number: 4, 
       title: "Presupuesto y Extras", 
       icon: MdAttachMoney,
-      description: "Detalles adicionales"
     },
   ];
 
@@ -156,7 +140,7 @@ const ContactWizard = () => {
                   isCompleted
                     ? "bg-green-500 text-white"
                     : isActive
-                    ? "bg-dark_primary text-white ring-4 ring-blue-200"
+                    ? "bg-gray text-white ring-4 ring-white"
                     : "bg-gray-200 text-gray-500"
                 }`}
               >
@@ -179,11 +163,11 @@ const ContactWizard = () => {
               
               <div className="mt-2 text-center">
                 <p className={`text-xs font-medium ${
-                  isActive ? "text-dark_primary" : isCompleted ? "text-green-600" : "text-gray-500"
+                  isActive ? "text-white" : isCompleted ? "text-green-600" : "text-gray-500"
                 }`}>
                   {step.title}
                 </p>
-                <p className="text-xs text-gray-400">{step.description}</p>
+                <p className="text-white text-gray-400">{step.description}</p>
               </div>
             </div>
           );
@@ -203,7 +187,7 @@ const ContactWizard = () => {
             <div className="space-y-4">
               <div>
                 <label htmlFor="EMAIL" className="block text-sm font-medium text-gray-200 mb-2">
-                  Correo Electrónico <span className="text-red-400">*</span>
+                  Correo Electrónico
                 </label>
                 <input
                   type="email"
@@ -211,15 +195,14 @@ const ContactWizard = () => {
                   id="EMAIL"
                   value={formData.EMAIL}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
-                  placeholder="tu@email.com"
+                  placeholder="Email de la persona que nos contrata"
                 />
               </div>
               
               <div>
                 <label htmlFor="MMERGE2" className="block text-sm font-medium text-gray-200 mb-2">
-                  Nombre Completo <span className="text-red-400">*</span>
+                  Nombre y Apellido
                 </label>
                 <input
                   type="text"
@@ -227,15 +210,14 @@ const ContactWizard = () => {
                   id="MMERGE2"
                   value={formData.MMERGE2}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
-                  placeholder="Tu nombre completo"
+                  placeholder="Quién nos contrata?"
                 />
               </div>
               
               <div>
                 <label htmlFor="MMERGE14" className="block text-sm font-medium text-gray-200 mb-2">
-                  Teléfono o WhatsApp <span className="text-red-400">*</span>
+                  Teléfono o WhatsApp
                 </label>
                 <input
                   type="tel"
@@ -243,9 +225,8 @@ const ContactWizard = () => {
                   id="MMERGE14"
                   value={formData.MMERGE14}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
-                  placeholder="+506 0000 0000"
+                  placeholder="Le contactaremos por este medio"
                 />
               </div>
             </div>
@@ -260,7 +241,7 @@ const ContactWizard = () => {
             <div className="space-y-4">
               <div>
                 <label htmlFor="MMERGE13" className="block text-sm font-medium text-gray-200 mb-2">
-                  Fecha del Evento <span className="text-red-400">*</span>
+                  Fecha del Evento
                 </label>
                 <input
                   type="date"
@@ -268,7 +249,6 @@ const ContactWizard = () => {
                   id="MMERGE13"
                   value={formData.MMERGE13}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
                 />
               </div>
@@ -289,7 +269,7 @@ const ContactWizard = () => {
               
               <div>
                 <label htmlFor="MMERGE7" className="block text-sm font-medium text-gray-200 mb-2">
-                  Lugar del Evento <span className="text-red-400">*</span>
+                  Lugar del Evento
                 </label>
                 <input
                   type="text"
@@ -297,7 +277,6 @@ const ContactWizard = () => {
                   id="MMERGE7"
                   value={formData.MMERGE7}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
                   placeholder="Dirección del evento"
                 />
@@ -314,7 +293,7 @@ const ContactWizard = () => {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-200 mb-3">
-                  Servicio a Contratar <span className="text-red-400">*</span>
+                  Servicio a Contratar
                 </label>
                 <div className="space-y-3">
                   {[
@@ -343,14 +322,13 @@ const ContactWizard = () => {
               
               <div>
                 <label htmlFor="MMERGE9" className="block text-sm font-medium text-gray-200 mb-2">
-                  Duración del Evento <span className="text-red-400">*</span>
+                  Duración del Evento
                 </label>
                 <select
                   name="MMERGE9"
                   id="MMERGE9"
                   value={formData.MMERGE9}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
                 >
                   <option value="">Seleccione la duración...</option>
@@ -401,8 +379,8 @@ const ContactWizard = () => {
                 />
               </div>
               
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-medium text-blue-900 mb-2">También puedes contactarme por:</h4>
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h4 className="font-medium text-base mb-2">Contáctame si tienes alguna duda:</h4>
                 <div className="space-y-2">
                   {Contact.social_media.map((item, index) => {
                     const Icon = item.icon;
@@ -412,7 +390,7 @@ const ContactWizard = () => {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 text-blue-700 hover:text-blue-900 transition-colors text-sm"
+                        className="flex items-center gap-3 text-black-700 hover:text-blue-900 transition-colors text-sm"
                       >
                         <Icon size={16} />
                         <span>{item.text}</span>
@@ -445,7 +423,7 @@ const ContactWizard = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-            <div className="bg-gradient-to-r from-dark_primary to-blue-600 px-8 py-6">
+            <div className="bg-gradient-to-r from-dark_primary to-gray px-8 py-6">
               <ProgressIndicator />
             </div>
             

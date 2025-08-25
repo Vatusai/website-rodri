@@ -22,15 +22,18 @@
     padding: 2rem;
     background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(78, 67, 69, 0.1);
   }
   
   /* Form Title */
   .form-title {
+    font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
+    font-weight: 600;
     margin-bottom: 1.5rem;
     text-align: center;
     color: #333;
+    letter-spacing: -0.01em;
   }
   
   /* Input and Label */
@@ -41,8 +44,10 @@
   label {
     display: block;
     margin-bottom: 0.01rem;
+    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
     color: #555;
+    letter-spacing: 0.01em;
   }
   
   input,
@@ -52,9 +57,11 @@ textarea {
   padding: 0.8rem;
   border: 1px solid #000000;
   border-radius: 8px;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
   color: #000000; /* Ensure dark text for visibility */
   background-color: white; /* Ensure input background is white */
+  letter-spacing: 0.01em;
 }
 
 /* Ensure placeholder text is also visible */
@@ -65,24 +72,27 @@ textarea::placeholder {
   
   input:focus, textarea:focus {
     outline: none;
-    border-color: #4A90E2;
+    border-color: #F9F5EF;
   }
   
   /* Submit Button */
   .submit-btn {
     width: 100%;
     padding: 0.75rem;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.2rem;
+    font-weight: 500;
     color: white;
-    background: #4A90E2;
+    background: #ffffff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s;
+    letter-spacing: 0.02em;
   }
   
   .submit-btn:hover {
-    background: #357ABD;
+    background: #f7f7f7;
   }
   
   /* Responsive Design */

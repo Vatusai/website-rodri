@@ -6,11 +6,15 @@ import Service from "./components/Services";
 import Projects from "./components/Projects";
 import Testimonials from "./components/Testimonials";
 import Hireme from "./components/Hireme";
-import Contact from "./components/Contact";
+import ContactWizard from "./components/ContactWizard";
 import { useEffect } from "react";
 // Animation package
 import Aos from "aos";
 import "aos/dist/aos.css";
+// Preloader component - non-invasive loading animation
+import Preloader from "./components/Preloader";
+// Floating Action Button for better CTA accessibility
+import FloatingActionButton from "./components/FloatingActionButton";
 
 const App = () => {
   useEffect(() => {
@@ -21,6 +25,10 @@ const App = () => {
   }, []);
   return (
     <div className="">
+      {/* Preloader - displays while assets load, then disappears automatically */}
+      <Preloader />
+      
+      {/* Original application content - unchanged */}
       <Navbar />
       <Hero />
       <Skills />
@@ -28,7 +36,11 @@ const App = () => {
       <Projects />
       <Testimonials />
       <Hireme />
-      <Contact />
+      <ContactWizard />
+      
+      {/* Floating Action Button for improved CTA accessibility */}
+      <FloatingActionButton />
+      
       <footer className="p-3 text-center">
         <h6 className="mb-3">FABIAN OROZCO</h6>
         <p> © All CopyRights Reserved 2025</p>

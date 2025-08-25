@@ -1,0 +1,336 @@
+/**
+ * Spawning Image Animation Styles
+ * 
+ * Creates spectacular spawning effects for images as they come into view
+ * Features particle effects, energy rings, and smooth transitions
+ */
+
+/* =============================================================================
+   MAIN CONTAINER
+   ============================================================================= */
+
+.spawning-image-container {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+}
+
+/* =============================================================================
+   MAIN IMAGE SPAWNING ANIMATION
+   ============================================================================= */
+
+.spawning-image {
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  transform: scale(0.3) rotate(180deg);
+  filter: blur(10px) brightness(0.3);
+  transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Active spawning state */
+.spawning-image.spawn-active {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  filter: blur(0px) brightness(1);
+}
+
+/* Loaded state for additional polish */
+.spawning-image.loaded.spawn-active {
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+/* =============================================================================
+   SPAWNING PARTICLES
+   ============================================================================= */
+
+.spawning-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.spawn-particle {
+  position: absolute;
+  font-size: calc(var(--size) * 16px);
+  font-weight: bold;
+  color: #000000;
+  opacity: 0;
+  left: var(--start-x);
+  top: var(--start-y);
+  animation: particleSpawn var(--duration) ease-out forwards;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 15;
+}
+
+@keyframes particleSpawn {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) scale(0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+  }
+  90% {
+    opacity: 0.8;
+    transform: 
+      translateX(var(--end-x)) 
+      translateY(var(--end-y)) 
+      scale(1.2) 
+      rotate(360deg);
+  }
+  100% {
+    opacity: 0;
+    transform: 
+      translateX(var(--end-x)) 
+      translateY(var(--end-y)) 
+      scale(0) 
+      rotate(720deg);
+  }
+}
+
+/* =============================================================================
+   GLOW BACKGROUND EFFECT
+   ============================================================================= */
+
+.image-glow-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(
+    circle, 
+    rgba(0, 0, 0, 0.1) 0%, 
+    rgba(0, 0, 0, 0.05) 40%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 1;
+  transition: transform 2s ease-out;
+}
+
+.image-glow-bg.glow-active {
+  transform: translate(-50%, -50%) scale(1);
+  animation: glowPulse 4s ease-in-out infinite 1s;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* =============================================================================
+   ENERGY RINGS EFFECT
+   ============================================================================= */
+
+.energy-rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.energy-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+.energy-rings.rings-active .energy-ring {
+  animation: ringExpand 2s ease-out forwards;
+}
+
+.ring-1 {
+  width: 80%;
+  height: 80%;
+  animation-delay: 0.2s;
+}
+
+.ring-2 {
+  width: 120%;
+  height: 120%;
+  animation-delay: 0.5s;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.ring-3 {
+  width: 160%;
+  height: 160%;
+  animation-delay: 0.8s;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes ringExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* =============================================================================
+   SPARKLE EFFECTS
+   ============================================================================= */
+
+.sparkle-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 12;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #000000;
+  opacity: 0;
+  animation: sparkleAnim 2s ease-out infinite;
+  animation-delay: var(--delay);
+}
+
+.sparkles-active .sparkle {
+  animation-play-state: running;
+}
+
+/* Individual sparkle positions */
+.sparkle-1 { top: 20%; left: 30%; }
+.sparkle-2 { top: 15%; right: 25%; }
+.sparkle-3 { bottom: 30%; left: 20%; }
+.sparkle-4 { bottom: 20%; right: 30%; }
+.sparkle-5 { top: 40%; left: 15%; }
+.sparkle-6 { top: 35%; right: 15%; }
+.sparkle-7 { bottom: 40%; left: 40%; }
+.sparkle-8 { bottom: 35%; right: 40%; }
+.sparkle-9 { top: 60%; left: 50%; }
+.sparkle-10 { top: 25%; left: 60%; }
+.sparkle-11 { bottom: 60%; left: 35%; }
+.sparkle-12 { top: 50%; right: 20%; }
+
+@keyframes sparkleAnim {
+  0%, 90%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  10%, 80% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.5) rotate(90deg);
+  }
+}
+
+/* Different sparkle shapes */
+.sparkle:nth-child(odd) {
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.sparkle:nth-child(even) {
+  transform: rotate(45deg);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+/* =============================================================================
+   HOVER ENHANCEMENTS
+   ============================================================================= */
+
+.spawning-image-container:hover .spawning-image.spawn-active {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+  transition: all 0.3s ease;
+}
+
+.spawning-image-container:hover .image-glow-bg.glow-active {
+  animation-duration: 2s;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .spawn-particle {
+    font-size: calc(var(--size) * 12px);
+  }
+  
+  .sparkle {
+    width: 3px;
+    height: 3px;
+  }
+  
+  .energy-ring {
+    border-width: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spawn-particle {
+    font-size: calc(var(--size) * 10px);
+  }
+  
+  .sparkle {
+    width: 2px;
+    height: 2px;
+  }
+}
+
+/* =============================================================================
+   REDUCED MOTION PREFERENCES
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .spawning-image {
+    transition: opacity 0.5s ease;
+    transform: none;
+    filter: none;
+  }
+  
+  .spawn-particle,
+  .energy-ring,
+  .sparkle {
+    animation: none;
+  }
+  
+  .image-glow-bg {
+    animation: none;
+  }
+}

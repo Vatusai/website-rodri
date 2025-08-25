@@ -61,7 +61,7 @@ export const content = {
     title: "Músico Profesional",
     firstName: "FABIAN",
     LastName: "OROZCO",
-    btnText: "Contáctame",
+    btnText: "Solicitar Cotización Gratis",
     image: Hero_person,
     hero_content: [
       {
@@ -187,7 +187,7 @@ export const content = {
     image1: Hireme_person,
     image2: Hireme_person2,
     para: "Cada nota que interpreto es el resultado de años de dedicación y perfeccionamiento, con el propósito de crear experiencias únicas en cada evento. Mi trayectoria musical es un viaje de crecimiento y descubrimiento, donde cada melodía refleja la riqueza de diversas culturas y el poder universal de la música. Llene el formulario para ponerme en contacto con usted.",
-    btnText: "Contrátenos",
+    btnText: "Solicitar Cotización Gratis",
   },
   Contact: {
     title: "Formulario para Eventos",

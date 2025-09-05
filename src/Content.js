@@ -58,9 +58,9 @@ export const content = {
     },
   ],
   hero: {
-    title: "Músico Profesional",
-    firstName: "FABIAN",
-    LastName: "OROZCO",
+    title: "Rodrigo Lagunas",
+    firstName: "RODRIGO",
+    LastName: "LAGUNAS",
     btnText: "Solicitar Cotización Gratis",
     image: Hero_person,
     hero_content: [

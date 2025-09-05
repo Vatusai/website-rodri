@@ -43,7 +43,7 @@ const Skills = () => {
         style={customStyles}
       >
         <div className="flex items-center gap-2">
-          <img className="h-10" src={selectSkill?.logo} alt="..." />
+          <img className="h-10 object-contain filter invert" src={selectSkill?.logo} alt="..." />
           <h6>{selectSkill?.name}</h6>
         </div>
         <br />
@@ -81,15 +81,15 @@ const Skills = () => {
               key={i}
               data-aos="fade-up"
               data-aos-delay={i * 400}
-              className="bg-white sm:cursor-pointer 
+              className="bg-background sm:cursor-pointer 
                relative group w-full flex items-center
-                gap-5 p-5 max-w-sm rounded-md border-2 border-slate-200"
+                gap-5 p-5 max-w-sm rounded-md border-2 border-gray"
             >
               <div>
                 <img
                   src={skill.logo}
                   alt="..."
-                  className="w-10 group-hover:scale-125 duration-200"
+                  className="w-10 object-contain filter invert group-hover:scale-125 duration-200"
                 />
               </div>
               <div>

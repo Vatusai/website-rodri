@@ -47,7 +47,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200"
+          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-gray"
           : "bg-transparent"
       }`}
     >
@@ -58,11 +58,11 @@ const Navbar = () => {
             <button
               onClick={() => scrollToSection("#home")}
               className={`text-2xl font-Croissant font-normal transition-colors duration-300 ${
-                isScrolled ? "text-dark_primary" : "text-white"
+                isScrolled ? "text-dark_primary" : "text-dark_primary"
               }`}
               style={{ letterSpacing: '0.05em' }}
             >
-              Fabian Orozco
+              Rodrigo Lagunas
             </button>
           </div>
 
@@ -81,11 +81,11 @@ const Navbar = () => {
                     className={`group flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       isActive
                         ? isScrolled
-                          ? "bg-gray text-white shadow-md"
-                          : "bg-white/20 text-white backdrop-blur-sm"
+                          ? "bg-gray text-dark_primary shadow-md"
+                          : "bg-gray/20 text-dark_primary backdrop-blur-sm"
                         : isScrolled
-                        ? "text-gray-700 hover:bg-gray-100 hover:text-dark_primary"
-                        : "text-white/80 hover:bg-white/10 hover:text-white"
+                        ? "text-dark_primary hover:bg-gray-100 hover:text-accent"
+                        : "text-dark_primary/80 hover:bg-gray/10 hover:text-dark_primary"
                     }`}
                   >
                     <Icon
@@ -117,8 +117,8 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md transition-colors duration-300 ${
                 isScrolled
-                  ? "text-gray-700 hover:bg-gray-100"
-                  : "text-white hover:bg-white/10"
+                  ? "text-dark_primary hover:bg-gray/20"
+                  : "text-dark_primary hover:bg-gray/10"
               }`}
               aria-label="Menú principal"
             >
@@ -159,7 +159,7 @@ const Navbar = () => {
             : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-200">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background/95 backdrop-blur-md shadow-lg border-t border-gray">
           {nav.map((item, index) => {
             const sectionId = item.link.replace("#", "");
             const isActive = activeSection === sectionId;
@@ -171,8 +171,8 @@ const Navbar = () => {
                 onClick={() => scrollToSection(item.link)}
                 className={`group w-full flex items-center px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
                   isActive
-                    ? "bg-dark_primary text-white shadow-md"
-                    : "text-gray-700 hover:bg-gray-100 hover:text-dark_primary"
+                    ? "bg-accent text-background shadow-md"
+                    : "text-dark_primary hover:bg-gray hover:text-background"
                 }`}
               >
                 <Icon

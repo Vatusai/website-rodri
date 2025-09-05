@@ -19,14 +19,9 @@ import FloatingActionButton from "./components/FloatingActionButton";
 import MusicalGalaxy from "./components/MusicalGalaxy";
 
 const App = () => {
-  useEffect(() => {
-    Aos.init({
-      duration: 1800,
-      offset: 100,
-    });
-  }, []);
+  // AOS is now initialized by the Preloader component after it finishes
   return (
-    <div className="">
+    <div className="bg-background min-h-screen">
       {/* Musical Galaxy Background - animated musical elements */}
       <MusicalGalaxy />
       
@@ -47,7 +42,7 @@ const App = () => {
       <FloatingActionButton />
       
       <footer className="p-3 text-center">
-        <h6 className="mb-3">FABIAN OROZCO</h6>
+        <h6 className="mb-3">RODRIGO LAGUNAS</h6>
         <p> © All CopyRights Reserved 2025</p>
       </footer>
     </div>

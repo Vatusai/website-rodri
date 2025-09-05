@@ -40,6 +40,8 @@ const FloatingActionButton = () => {
       action: () => window.open("mailto:fabanorgo@gmail.com", "_blank"),
       bgColor: "bg-gray hover:bg-blue-600",
       delay: "delay-75",
+      labelColor: "text-blue-300", // Color personalizado para Email
+      tooltipBg: "bg-blue-800",
     },
     {
       icon: BsWhatsapp,
@@ -47,6 +49,8 @@ const FloatingActionButton = () => {
       action: () => window.open("https://wa.me/50664559354", "_blank"),
       bgColor: "bg-green-500 hover:bg-green-600",
       delay: "delay-100",
+      labelColor: "text-green-300", // Color personalizado para WhatsApp
+      tooltipBg: "bg-green-800",
     },
     {
       icon: MdCall,
@@ -54,6 +58,8 @@ const FloatingActionButton = () => {
       action: () => window.open("tel:+50664559354", "_blank"),
       bgColor: "bg-gray hover:bg-blue-600",
       delay: "delay-150",
+      labelColor: "text-yellow-300", // Color personalizado para Llamar
+      tooltipBg: "bg-purple-800",
     },
   ];
 
@@ -84,9 +90,9 @@ const FloatingActionButton = () => {
               >
                 <Icon size={20} />
                 {/* Tooltip */}
-                <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className={`absolute right-full mr-3 top-1/2 transform -translate-y-1/2 ${item.tooltipBg} ${item.labelColor} text-sm px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium`}>
                   {item.label}
-                  <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-gray-800"></div>
+                  <div className={`absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent ${item.tooltipBg === 'bg-blue-800' ? 'border-l-blue-800' : item.tooltipBg === 'bg-green-800' ? 'border-l-green-800' : 'border-l-purple-800'}`}></div>
                 </div>
               </button>
             );
@@ -95,7 +101,7 @@ const FloatingActionButton = () => {
           {/* Main quote button */}
           <button
             onClick={scrollToContact}
-            className="bg-dark_primary hover:bg-opacity-90 text-white px-6 py-3 rounded-full shadow-lg transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl text-sm font-semibold"
+            className="bg-dark_primary hover:bg-opacity-90 text-black px-6 py-3 rounded-full shadow-lg transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl text-sm font-semibold"
           >
             Cotización Gratis
           </button>
@@ -106,7 +112,7 @@ const FloatingActionButton = () => {
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className={`
-          bg-gradient-to-r from-dark_primary to-yellow-600 
+          bg-gradient-to-r from-black to-red-600 
           text-white p-4 rounded-full shadow-2xl 
           transform transition-all duration-300 ease-out
           hover:scale-110 hover:shadow-xl

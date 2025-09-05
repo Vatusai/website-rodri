@@ -163,7 +163,7 @@ const ContactWizard = () => {
               
               <div className="mt-2 text-center">
                 <p className={`text-xs font-medium ${
-                  isActive ? "text-white" : isCompleted ? "text-green-600" : "text-gray-500"
+                  isActive ? "text-black" : isCompleted ? "text-green-600" : "text-gray-500"
                 }`}>
                   {step.title}
                 </p>
@@ -379,7 +379,7 @@ const ContactWizard = () => {
                 />
               </div>
               
-              <div className="bg-green-50 p-4 rounded-lg">
+              <div className="bg-black p-4 rounded-lg">
                 <h4 className="font-medium text-base mb-2">Contáctame si tienes alguna duda:</h4>
                 <div className="space-y-2">
                   {Contact.social_media.map((item, index) => {
@@ -390,7 +390,7 @@ const ContactWizard = () => {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 text-black-700 hover:text-blue-900 transition-colors text-sm"
+                        className="flex items-center gap-3 text-white hover:text-accent transition-colors text-sm"
                       >
                         <Icon size={16} />
                         <span>{item.text}</span>
@@ -409,20 +409,20 @@ const ContactWizard = () => {
   };
 
   return (
-    <section className="bg-dark_primary text-black" id="contact">
+    <section className="bg-dark_primary text-dark_primary" id="contact">
       <Toaster position="top-center" />
       <div className="md:container px-5 py-16">
         <div className="text-center mb-12">
-          <h2 className="title !text-white" data-aos="fade-down">
+          <h2 className="title !text-black" data-aos="fade-down">
             {Contact.title}
           </h2>
-          <h4 className="subtitle" data-aos="fade-down">
+          <h4 className="subtitle !text-black" data-aos="fade-down">
             {Contact.subtitle}
           </h4>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+          <div className="bg-bg_light_primary rounded-2xl shadow-2xl overflow-hidden">
             <div className="bg-gradient-to-r from-dark_primary to-gray px-8 py-6">
               <ProgressIndicator />
             </div>
@@ -449,7 +449,7 @@ const ContactWizard = () => {
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="flex items-center gap-2 px-6 py-3 bg-dark_primary text-white rounded-lg font-medium hover:bg-opacity-90 transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-dark_primary text-black rounded-lg font-medium hover:bg-opacity-90 transition-all"
                   >
                     Siguiente
                     <MdArrowForward size={20} />

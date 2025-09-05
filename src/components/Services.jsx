@@ -23,7 +23,7 @@ const Services = () => {
             >
               {/* Aquí ajustamos el tamaño del SVG */}
               <div className="w-16 h-16 mx-auto">
-                <img src={content.logo} alt="..." className="w-full h-full object-contain" />
+                <img src={content.logo} alt="..." className="w-full h-full object-contain filter invert" />
               </div>
               <h6 className="my-3">{content.title}</h6>
               <p className="leading-7">{content.para}</p>

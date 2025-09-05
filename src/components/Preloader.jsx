@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import logo from '../assets/images/logo.png';
 import './Preloader.css';
+import Aos from 'aos';
 
 /**
  * Enhanced Preloader Component - Displays fancy logo animation while site assets load
@@ -19,6 +20,19 @@ const Preloader = () => {
     // Extended 5-second timer for logo and text animation
     const logoTimer = setTimeout(() => {
       setIsLoading(false);
+      // Initialize AOS when preloader finishes
+      setTimeout(() => {
+        console.log('Initializing AOS after preloader finished...');
+        Aos.init({
+          duration: 1800,
+          offset: 100,
+          delay: 0,
+          once: false,
+          mirror: true,
+          anchorPlacement: 'top-bottom',
+        });
+        Aos.refresh();
+      }, 100);
     }, 5000);
 
     // Cleanup
@@ -30,6 +44,19 @@ const Preloader = () => {
   // Skip button handler
   const handleSkip = () => {
     setIsLoading(false);
+    // Initialize AOS when skipping preloader
+    setTimeout(() => {
+      console.log('Initializing AOS after skip...');
+      Aos.init({
+        duration: 1800,
+        offset: 100,
+        delay: 0,
+        once: false,
+        mirror: true,
+        anchorPlacement: 'top-bottom',
+      });
+      Aos.refresh();
+    }, 100);
   };
 
   // Don't render preloader if loading is complete
@@ -53,12 +80,12 @@ const Preloader = () => {
         />
         {/* Fallback logo text (hidden by default) */}
         <div className="logo-fallback-large" style={{display: 'none'}}>
-          FABIAN OROZCO
+          RODRIGO LAGUNAS
         </div>
         
         {/* Name text below logo with delayed animation */}
         <div className="preloader-name">
-          Fabian Orozco
+          Rodrigo Lagunas
         </div>
       </div>
     </div>

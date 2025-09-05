@@ -66,7 +66,7 @@ const handleSubmit = async (e) => {
     <section className="bg-dark_primary text-black" id="contact">
       <Toaster />
       <div className="md:container px-5 py-0.5">
-        <h2 className="title !text-white" data-aos="fade-down">
+        <h2 className="title !text-background" data-aos="fade-down">
           {Contact.title}
         </h2>
         <h4 className="subtitle" data-aos="fade-down">
@@ -201,13 +201,13 @@ const handleSubmit = async (e) => {
                   />
                   <button
                     type="submit"
-                    className="btn bg-white text-dark_primary"
+                    className="btn bg-background text-dark_primary"
                   >
                     Enviar
                   </button>
                   {/* ⬇️ NUEVO BLOQUE DE REDES SOCIALES */}
                   <div className="mt-6"></div>
-                  <h3 className="text-sm font-Source font-medium text-black tracking-wide mb-2">También puedes contactarme por:</h3>
+                  <h3 className="text-sm font-Source font-medium text-background tracking-wide mb-2">También puedes contactarme por:</h3>
                   <div className="flex flex-col gap-2">
                      {Contact.social_media.map((item, index) => (
                        <a
@@ -215,7 +215,7 @@ const handleSubmit = async (e) => {
                           href={item.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-white hover:text-accent transition-all"
+                          className="flex items-center gap-2 text-background hover:text-accent transition-all"
                      >
                        <span className="text-xl">{<item.icon />}</span>
                        <span>{item.text}</span>

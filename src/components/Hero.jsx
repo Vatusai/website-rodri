@@ -5,27 +5,17 @@ const Hero = () => {
   const { hero } = content;
 
   return (
-    <section id="home" className="overflow-hidden">
+    <section id="home" className="overflow-hidden relative">
       <div className="min-h-screen relative flex md:flex-row flex-col-reverse md:items-end justify-center items-center">
-        <div
-          data-aos="slide-left"
-          data-aos-delay="2400"
-          className="absolute h-full md:w-4/12 w-8/12 top-0 right-0 bg-primaryLinear bottom-0 -z-10"
-        >
-          <h1 className="rotate-90 absolute top-[30%] right-[-15%] text-black font-Croissant">
-            {hero.firstName}{" "}
-            <span className="text-dark_primary">{hero.LastName}</span>
-          </h1>
-        </div>
 
         {/* first col */}
-        <div className="pb-16 px-6 pt-5" data-aos="fade-down">
+        <div className="pb-16 px-6 pt-5" data-aos="fade-down" data-aos-delay="200">
           <h2>{hero.title}</h2>
           <br />
           <div className="flex justify-end">
             {/* Cambié el button por un <a> */}
             <a href="#contact">
-              <button className="btn">{hero.btnText}</button>
+              <button className="btn text-white">{hero.btnText}</button>
             </a>
           </div>
           <div className="flex flex-col gap-10 mt-10">
@@ -33,7 +23,7 @@ const Hero = () => {
               <div
                 key={i}
                 data-aos="fade-down"
-                data-aos-delay={i * 300}
+                data-aos-delay={200 + (i * 300)}
                 className={`flex items-center w-80 gap-5
             ${i === 1 && " flex-row-reverse text-right"}  `}
               >
@@ -45,12 +35,16 @@ const Hero = () => {
         </div>
 
         {/* sec col */}
-        <div className="md:h-[37rem] h-96">
+        <div className="md:h-[37rem] h-96 relative overflow-hidden">
           <img
             src={hero.image}
-            data-aos="slide-up"
+            data-aos="fade-left"
+            data-aos-delay="800"
+            data-aos-duration="3000"
+            data-aos-once="true"
+            data-aos-easing="ease-out-cubic"
             alt="..."
-            className="h-full object-cover"
+            className="h-full object-cover w-full"
           />
         </div>
       </div>

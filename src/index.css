@@ -13,8 +13,30 @@
 @tailwind utilities;
 
 @layer base {
-   html {
+  /* Custom cursor for entire website */
+  * {
+    cursor: url('./assets/cursors/cursor.cur'), auto !important;
+  }
+  
+  /* Interactive elements with custom cursor */
+  a, button, input[type="button"], input[type="submit"], 
+  .clickable, [role="button"] {
+    cursor: url('./assets/cursors/cursor.cur'), pointer !important;
+  }
+  
+  /* Text selection areas */
+  input[type="text"], input[type="email"], input[type="tel"], 
+  textarea, [contenteditable] {
+    cursor: url('./assets/cursors/cursor.cur'), text !important;
+  }
+
+  html {
     scroll-behavior: smooth;
+    @apply bg-background;
+  }
+  
+  body {
+    @apply bg-background;
   }
   h1,
   h2,
@@ -121,6 +143,7 @@
     letter-spacing: 0.03em;
     font-weight: 500;
     transition: all 0.3s ease;
+    cursor: url('./assets/cursors/cursor.cur'), pointer !important;
   }
   
   /* Responsive Typography Utilities */
@@ -140,4 +163,21 @@
 }
 .swiper-pagination-bullet {
   @apply w-3 h-3 bg-dark_primary;
+  cursor: url('./assets/cursors/cursor.cur'), pointer !important;
+}
+
+/* Additional custom cursor styles for specific components */
+.floating-action-button, .skip-button, 
+.progress-indicator, .navbar a, 
+.contact-wizard button, .preloader button {
+  cursor: url('./assets/cursors/cursor.cur'), pointer !important;
+}
+
+/* Ensure cursor works on hover states */
+*:hover {
+  cursor: url('./assets/cursors/cursor.cur'), auto !important;
+}
+
+a:hover, button:hover, [role="button"]:hover {
+  cursor: url('./assets/cursors/cursor.cur'), pointer !important;
 }

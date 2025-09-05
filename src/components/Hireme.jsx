@@ -35,7 +35,7 @@ const Hireme = () => {
             <br />
             {/* Agregar enlace con smooth scroll */}
             <a href="#contact">
-              <button className="btn bg-dark_primary text-white">
+              <button className="btn bg-dark_primary text-black">
                 {Hireme.btnText}
               </button>
             </a>

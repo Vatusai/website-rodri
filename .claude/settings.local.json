@@ -5,7 +5,11 @@
       "Bash(git merge:*)",
       "Bash(git fetch:*)",
       "Bash(npm run dev:*)",
-      "Bash(npm install)"
+      "Bash(npm install)",
+      "WebSearch",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:api.qrserver.com)"
     ],
     "deny": [],
     "ask": []

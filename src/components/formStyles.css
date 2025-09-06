@@ -20,10 +20,109 @@
     max-width: 600px;
     margin: 2rem ;
     padding: 2rem;
-    background: #ffffff;
+    background: #000000 !important;
+    background-color: #000000 !important;
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(78, 67, 69, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
+
+/* Ensure form container stays black on all contexts */
+.validate.form-container,
+#mc-embedded-subscribe-form {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Contact section black styling */
+#contact {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+#contact * {
+    background-color: transparent !important;
+}
+
+#contact .md:container,
+#contact .flex,
+#contact .flex-1,
+#mc_embed_shell,
+#mc_embed_signup {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure all text is white in contact section */
+#contact h2,
+#contact h4,
+#contact p,
+#contact label,
+#contact .title,
+#contact .subtitle {
+    color: #ffffff !important;
+}
+
+/* Keep input fields white with dark text for readability */
+#contact input,
+#contact select,
+#contact textarea,
+#contact-wizard input,
+#contact-wizard select,
+#contact-wizard textarea {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #333333 !important;
+}
+
+/* ContactWizard section black styling */
+#contact-wizard {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+#contact-wizard * {
+    background-color: transparent !important;
+}
+
+#contact-wizard .md:container,
+#contact-wizard .max-w-4xl,
+#contact-wizard form,
+#contact-wizard .text-center {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure all text is white in contact wizard */
+#contact-wizard h2,
+#contact-wizard h3,
+#contact-wizard h4,
+#contact-wizard p,
+#contact-wizard label,
+#contact-wizard .title,
+#contact-wizard .subtitle,
+#contact-wizard .text-white,
+#contact-wizard .text-gray-200 {
+    color: #ffffff !important;
+}
+
+/* Progress indicator styling */
+#contact-wizard .bg-gray {
+    background-color: #4a5568 !important;
+}
+
+#contact-wizard .ring-white {
+    ring-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Form container in wizard */
+#contact-wizard .bg-black {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+#contact-wizard .border-gray-800 {
+    border-color: #2d3748 !important;
+}
   
   /* Form Title */
   .form-title {
@@ -32,7 +131,7 @@
     font-weight: 600;
     margin-bottom: 1.5rem;
     text-align: center;
-    color: #333;
+    color: #ffffff;
     letter-spacing: -0.01em;
   }
   
@@ -43,10 +142,10 @@
   
   label {
     display: block;
-    margin-bottom: 0.01rem;
+    margin-bottom: 0.5rem;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
-    color: #555;
+    color: #ffffff;
     letter-spacing: 0.01em;
   }
   
@@ -55,24 +154,75 @@ select,
 textarea {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid #000000;
+  border: 1px solid #ddd;
   border-radius: 8px;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
-  color: #000000; /* Ensure dark text for visibility */
-  background-color: white; /* Ensure input background is white */
+  color: #333 !important; /* Ensure dark text for visibility */
+  background-color: #ffffff !important; /* Ensure input background is white */
   letter-spacing: 0.01em;
+}
+
+/* Ensure form controls are visible on all backgrounds */
+.bg-dark_primary input,
+.bg-dark_primary select,
+.bg-dark_primary textarea,
+.form-container input,
+.form-container select,
+.form-container textarea {
+  color: #333 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #ddd !important;
+}
+
+.bg-dark_primary label,
+.form-container label {
+  color: #ffffff !important;
+}
+
+.bg-dark_primary strong,
+.form-container strong {
+  color: #ffffff !important;
+}
+
+.bg-dark_primary .text-sm,
+.form-container .text-sm {
+  color: #ffffff !important;
+}
+
+.bg-dark_primary .text-base,
+.form-container .text-base {
+  color: #ffffff !important;
 }
 
 /* Ensure placeholder text is also visible */
 input::placeholder,
-textarea::placeholder {
-  color: #666; /* Light grey for better contrast */
+textarea::placeholder,
+select::placeholder {
+  color: #888 !important;
+  opacity: 1;
+}
+
+.bg-dark_primary input::placeholder,
+.bg-dark_primary textarea::placeholder,
+.bg-dark_primary select::placeholder {
+  color: #888 !important;
+  opacity: 1;
 }
   
-  input:focus, textarea:focus {
+  input:focus, 
+  textarea:focus,
+  select:focus {
     outline: none;
-    border-color: #F9F5EF;
+    border-color: #8B5CF6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  }
+  
+  .bg-dark_primary input:focus,
+  .bg-dark_primary textarea:focus,
+  .bg-dark_primary select:focus {
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2) !important;
   }
   
   /* Submit Button */
@@ -82,7 +232,7 @@ textarea::placeholder {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.2rem;
     font-weight: 500;
-    color: white;
+    color: #000000;
     background: #ffffff;
     border: none;
     border-radius: 8px;

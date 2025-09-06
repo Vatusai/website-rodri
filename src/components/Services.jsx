@@ -2,33 +2,131 @@ import { content } from "../Content";
 
 const Services = () => {
   const { services } = content;
+  
   return (
-    <section id="services">
-      <div className="md:container px-5 py-14">
-        <h2 className="title" data-aos="fade-down">
-          {services.title}
-        </h2>
-        <h4 className="subtitle" data-aos="fade-down">
-          {services.subtitle}
-        </h4>
-        <br />
-        <div className="flex gap-5 justify-between flex-wrap group">
+    <section id="services" className="section-pop-artist alternate">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-xl"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-secondary/5 rounded-full blur-xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-tertiary/5 rounded-full blur-xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="glow-effect glow-effect-orange glass-text p-4 sm:p-6 mb-4 inline-block">
+            <div className="glow-mask"></div>
+            <div className="glow-effect-content">
+              <h2 className="section-title-pop text-white text-2xl sm:text-3xl md:text-4xl" data-aos="fade-down">
+                {services.title}
+              </h2>
+            </div>
+          </div>
+          {/* Removed the 'Lo que ofrecemos' subtitle container */}
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {services.service_content.map((content, i) => (
             <div
               key={i}
               data-aos="fade-up"
-              data-aos-delay={i * 600}
-              className="min-w-[14rem] duration-300 cursor-pointer border-2 border-slate-200 rounded-xl text-center bg-bg_light_primary p-6 flex-1 group-hover:blur-sm 
-              hover:!blur-none"
+              data-aos-delay={200 + (i * 150)}
+              className="service-card-pop glass-card glow-effect glow-effect-purple group"
             >
-              {/* Aquí ajustamos el tamaño del SVG */}
-              <div className="w-16 h-16 mx-auto">
-                <img src={content.logo} alt="..." className="w-full h-full object-contain filter invert" />
+              <div className="glow-mask"></div>
+              <div className="glow-effect-content p-5 sm:p-6">
+                {/* Service Icon */}
+                <div className="service-icon-pop mb-4 sm:mb-6">
+                  <img 
+                    src={content.logo} 
+                    alt={content.title}
+                    className="w-8 h-8 sm:w-10 sm:h-10 object-contain brightness-0 invert opacity-90" 
+                  />
+                </div>
+
+                {/* Service Title */}
+                <h3 className="text-xl sm:text-2xl font-600 text-text_primary mb-3 sm:mb-4 group-hover:text-secondary transition-colors duration-300">
+                  {content.title}
+                </h3>
+
+                {/* Service Description */}
+                <p className="text-text_secondary leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base">
+                  {content.para}
+                </p>
+
+                {/* Premium Features Badge */}
+                <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+                {i === 0 && (
+                  <>
+                    <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs sm:text-sm font-500">Professional Setup</span>
+                    <span className="px-3 py-1 bg-gold/10 text-gold rounded-full text-xs sm:text-sm font-500">Premium Experience</span>
+                  </>
+                )}
+                {i === 1 && (
+                  <>
+                    <span className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-xs sm:text-sm font-500">Custom Arrangements</span>
+                    <span className="px-3 py-1 bg-tertiary/10 text-tertiary rounded-full text-xs sm:text-sm font-500">Live Performance</span>
+                  </>
+                )}
+                {i === 2 && (
+                  <>
+                    <span className="px-3 py-1 bg-pink/10 text-pink rounded-full text-xs sm:text-sm font-500">Elegant Atmosphere</span>
+                    <span className="px-3 py-1 bg-cyan/10 text-cyan rounded-full text-xs sm:text-sm font-500">Background Music</span>
+                  </>
+                )}
+                </div>
+
+                {/* Learn More Link */}
+                <div className="flex items-center justify-between">
+                  <a 
+                    href="#contact"
+                    className="inline-flex items-center text-accent hover:text-secondary transition-colors duration-300 font-500 text-sm sm:text-base"
+                  >
+                    Learn More
+                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+
+                  {/* Service Quality Indicator */}
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, star) => (
+                      <svg 
+                        key={star}
+                        className="w-4 h-4 text-gold fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <h6 className="my-3">{content.title}</h6>
-              <p className="leading-7">{content.para}</p>
             </div>
           ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-12 sm:mt-16">
+          <div className="glass-text p-4 max-w-lg mx-auto mb-6">
+            <p className="text-white text-base sm:text-lg">
+              Ready to elevate your event with professional violin music?
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#contact">
+              <button className="btn-pop-primary glass w-full sm:w-auto min-h-[44px]">
+                Get Custom Quote
+              </button>
+            </a>
+            <a href="#projects">
+              <button className="btn-pop-secondary glass w-full sm:w-auto min-h-[44px]">
+                View Performances
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </section>

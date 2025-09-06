@@ -28,7 +28,7 @@ import Hireme_person2 from "./assets/images/Hireme/person2.png";
 // import icons from react-icons
 import { GrMail } from "react-icons/gr";
 import { MdArrowForward, MdCall } from "react-icons/md";
-import { BsInstagram } from "react-icons/bs";
+import { BsInstagram, BsYoutube, BsFacebook, BsInfoCircle } from "react-icons/bs";
 import { TbSmartHome } from "react-icons/tb";
 import { BiUser } from "react-icons/bi";
 import { RiServiceLine, RiProjectorLine } from "react-icons/ri";
@@ -43,6 +43,12 @@ export const content = {
     {
       link: "#skills",
       icon: BiUser,
+    },
+    {
+      link: "bio",
+      icon: BsInfoCircle,
+      external: true,
+      url: "https://naceunaestrellacr.fandom.com/es/wiki/Rodrigo_Lagunas",
     },
     {
       link: "#services",
@@ -65,11 +71,11 @@ export const content = {
     image: Hero_person,
     hero_content: [
       {
-        count: "10+",
+        count: "15+",
         text: "Años de experiencia en Arte Escénico",
       },
       {
-        count: "100+",
+        count: "1000+",
         text: "Eventos realizados con éxito",
       },
     ],
@@ -142,11 +148,11 @@ export const content = {
         image: project1,
       },
       {
-        title: "Agrupaciones Musicales Elegantes",
+        title: "Agrupaciones musicales",
         image: project2,
       },
       {
-        title: "Solista de Orquesta",
+        title: "Director de Bandas",
         image: project3,
       },
     ],
@@ -157,27 +163,27 @@ export const content = {
     testimonials_content: [
       {
         review:
-          "“😍😍😍😍😍 Fabian, qué hermoso tu trabajo😻tienes un Don hermoso dado por Dios. Gracias a ello mi boda fué maravillosa. Muchas gracias por tus servicios🙏”",
+          "\"Mis respetos y admiración para Rodrigo, sus músicos y cantantes. Un orgullo nacional. Gracias\"",
         img: avatar1,
-        name: "raquelalvaradoumana - Instagram",
+        name: "anacemonge2211 - Instagram",
       },
       {
         review:
-          "“Este muchacho le da esa pincelada elegancia con su violin que belleza lo felicito 🇨🇷👏👍”",
+          "\"Excelente Rodrigo!!!!!! El trabajo que realizas es increíble como te lo dije en el Jazz Café!!! Que Dios te siga bendiciendo!!\"",
         img: avatar2,
-        name: "marlenejarias - Instagram",
+        name: "marienf - INSTAGRAM",
       },
       {
         review:
-          "“Nombres yo los contrataría solo por tocar esa hermosa pieza !!!!”",
+          "\"Excelentes músicos y grandes personas 🔥\"",
         img: avatar3,
-        name: "smarenco_25 - Instagram",
+        name: "jeffuriel -INSTAGRAM",
       },
       {
         review:
-          "“Que belleza amo ese sonido del violín”",
+          "\"El talento definitivamente es más que evidente, me encanta #JuanNUE el mejor y la banda espectacular 👌\"",
         img: avatar4,
-        name: "“raquelarroyomaquillistacr - Instagram”",
+        name: "kimta_miranda - INSTAGRAM",
       },
     ],
   },
@@ -194,19 +200,29 @@ export const content = {
     subtitle: "Cotización y Reservación",
     social_media: [
       {
-        text: "fabanorgo@gmail.com",
+        text: "rodrigolagunasmusic@gmail.com",
         icon: GrMail,
-        link: "mailto:fabanorgo@gmail.com",
+        link: "mailto:rodrigolagunasmusic@gmail.com",
       },
       {
-        text: "+506 6455 9354",
+        text: "+506 8338 4214",
         icon: MdCall,
-        link: "https://wa.me/50664559354",
+        link: "https://wa.me/50683384214",
       },
       {
-        text: "fabianorozco.music",
+        text: "YouTube Channel",
+        icon: BsYoutube,
+        link: "https://www.youtube.com/@rodrigolagunasmusico9689",
+      },
+      {
+        text: "RodrigoLagunasMusic",
         icon: BsInstagram,
-        link: "https://www.instagram.com/fabianorozco.music/",
+        link: "https://www.instagram.com/RodrigoLagunasMusic",
+      },
+      {
+        text: "Facebook Page",
+        icon: BsFacebook,
+        link: "https://www.facebook.com/RodrigoLagunasMusic",
       },
     ],
   },

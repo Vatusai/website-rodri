@@ -1,16 +1,28 @@
-/* Elegant Typography System for Musical Portfolio */
-/* Croissant One - Main headlines and name */
+/* Updated Typography System with Cardo and Arial/Bunya */
+/* Cardo - Elegant serif for headings and display text */
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
+/* Bunya - Modern sans-serif for secondary text */
+@import url('https://fonts.googleapis.com/css2?family=Bunya:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* JetBrains Mono - Modern monospace for technical elements */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+
+/* Legacy fonts for compatibility */
 @import url("https://fonts.googleapis.com/css2?family=Croissant+One&display=swap");
-/* Playfair Display - Secondary headings and section titles */
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-/* Source Sans Pro - Body text and UI elements */
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
-/* Inter - Small text and captions */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Import Pop Artist Theme */
+@import './styles/pop-artist-theme.css';
+
+/* Import Mobile-First Optimizations */
+@import './styles/mobile-first.css';
+
+/* Import Nuclear Mobile Centering (LAST - highest priority) */
+@import './styles/mobile-force-center.css';
 
 @layer base {
   /* Custom cursor for entire website */
@@ -33,10 +45,55 @@
   html {
     scroll-behavior: smooth;
     @apply bg-background;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
   
   body {
-    @apply bg-background;
+    @apply bg-background text-text_primary;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  /* Mobile viewport fix - prevent horizontal scrollbars */
+  @media (max-width: 767px) {
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+    
+    #root {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: hidden !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Main app container */
+    .bg-background,
+    .min-h-screen,
+    .pop-artist-theme {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: hidden !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
   }
   h1,
   h2,
@@ -46,104 +103,240 @@
   h6,
   p,
   span {
-    @apply text-dark_primary;
+    @apply text-text_primary;
   }
   
-  /* Main Headlines - Croissant One for elegant, musical feel */
+  /* Modern Pop Artist Typography System */
+  
+  /* Main Headlines - Outfit for modern, bold display */
   h1 {
-    @apply font-Croissant lg:text-6xl text-3xl font-normal tracking-wide;
-    line-height: 1.1;
-    letter-spacing: 0.02em;
+    @apply font-Display lg:text-7xl text-4xl font-extrabold;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #8B5CF6 0%, #FF6B35 50%, #06D6A0 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    padding-bottom: 0.1em;
   }
   
-  /* Section Titles - Playfair Display for sophisticated elegance */
+  /* Section Titles - Outfit for contemporary feel */
   h2 {
-    @apply font-Playfair text-5xl font-bold;
-    line-height: 1.2;
+    @apply font-Display text-6xl font-bold text-text_primary;
+    line-height: 1.1;
     letter-spacing: -0.02em;
   }
   
-  /* Subsection Headings - Playfair Display medium weight */
+  /* Subsection Headings - Inter for versatility */
   h3 {
-    @apply font-Playfair text-4xl font-semibold;
-    line-height: 1.3;
+    @apply font-Heading text-4xl font-semibold text-text_primary;
+    line-height: 1.2;
     letter-spacing: -0.01em;
   }
   
-  /* Minor Headings - Source Sans Pro for clean readability */
+  /* Minor Headings - Inter for clean readability */
   h4 {
-    @apply font-Source md:text-3xl text-2xl font-semibold !leading-relaxed;
+    @apply font-Heading md:text-3xl text-2xl font-semibold text-text_primary;
+    line-height: 1.3;
     letter-spacing: -0.005em;
   }
   
   h5 {
-    @apply font-Source text-xl font-semibold leading-7;
+    @apply font-Heading text-xl font-medium leading-7 text-text_primary;
     letter-spacing: 0;
   }
   
   h6 {
-    @apply font-Source font-semibold text-dark_primary leading-8 text-lg;
+    @apply font-Heading font-medium text-text_primary leading-8 text-lg;
     letter-spacing: 0.01em;
   }
 
-  /* Body Text - Source Sans Pro for excellent readability */
+  /* Body Text - Arial for excellent readability */
   p {
-    @apply font-Source text-base leading-7;
+    @apply font-Body text-base leading-7 text-text_secondary;
     letter-spacing: 0.01em;
   }
   
   /* UI Elements */
   button {
-    @apply font-Source font-medium;
+    @apply font-Secondary font-medium;
     letter-spacing: 0.02em;
   }
   
   input,
   textarea {
-    @apply bg-transparent outline-none font-Source;
+    @apply bg-transparent outline-none font-Body text-text_primary;
     letter-spacing: 0.01em;
   }
   
   /* Small text and captions */
   .text-caption {
-    @apply font-Inter text-sm text-gray;
+    @apply font-Secondary text-sm text-text_muted;
     letter-spacing: 0.02em;
   }
   
   /* Navigation styling */
   nav {
-    @apply font-Source;
+    @apply font-Secondary;
   }
   
-  /* Custom typography classes */
+  /* Modern Pop Artist Typography Classes */
   .title {
-    @apply font-Playfair text-5xl font-bold text-dark_primary;
-    line-height: 1.2;
+    @apply font-Display text-6xl font-bold text-text_primary;
+    line-height: 1.1;
     letter-spacing: -0.02em;
   }
   
   .subtitle {
-    @apply font-Source text-xl font-medium text-gray;
+    @apply font-Secondary text-xl font-normal text-text_muted;
     line-height: 1.4;
     letter-spacing: 0.01em;
   }
   
-  /* Elegant name styling for brand */
+  /* Artist name styling for brand */
+  .artist-name {
+    @apply font-Display font-extrabold;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #8B5CF6 0%, #FF6B35 50%, #06D6A0 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+  }
+  
+  /* Legacy compatibility classes */
   .elegant-name {
-    @apply font-Croissant font-normal;
-    letter-spacing: 0.05em;
+    @apply artist-name;
   }
 }
 
 @layer utilities {
+  /* Mouse-following glow effect utility classes */
+  .glow-effect {
+    position: relative;
+    background: #1A1A2E;
+    border-radius: 16px;
+  }
+
+  .glow-effect::before {
+    content: '';
+    position: absolute;
+    width: calc(100% + 3px);
+    height: calc(100% + 3px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 16px;
+    background: radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), #8B5CF6 0%, transparent 70%);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .glow-effect:hover::before {
+    opacity: 1;
+  }
+
+  .glow-effect .glow-mask {
+    position: absolute;
+    inset: 3px;
+    background: #1A1A2E;
+    border-radius: 13px;
+    z-index: 1;
+  }
+
+  .glow-effect-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+  }
+
+  /* Variant with different colors for different sections */
+  .glow-effect-purple::before {
+    background: radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), #8B5CF6 0%, transparent 70%);
+  }
+
+  .glow-effect-orange::before {
+    background: radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), #FF6B35 0%, transparent 70%);
+  }
+
+  .glow-effect-teal::before {
+    background: radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), #06D6A0 0%, transparent 70%);
+  }
+
+  .glow-effect-gold::before {
+    background: radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), #FFD700 0%, transparent 70%);
+  }
+
+  /* Glassmorphism utility classes */
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  
+  .glass-dark {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  
+  .glass-card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  
+  .glass-text {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.25);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
   .btn {
-    @apply py-2 px-9 border-2 rounded-md
-     border-dark_primary rounded-br-3xl font-medium;
-    font-family: 'Source Sans Pro', sans-serif;
-    letter-spacing: 0.03em;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    @apply py-3 px-8 rounded-full font-medium transition-all duration-300;
+    font-family: 'Bunya', 'Arial', sans-serif;
+    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, #8B5CF6 0%, #FF6B35 100%);
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
     cursor: url('./assets/cursors/cursor.cur'), pointer !important;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn:hover::before {
+    left: 100%;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
   }
   
   /* Responsive Typography Utilities */
@@ -162,8 +355,16 @@
   }
 }
 .swiper-pagination-bullet {
-  @apply w-3 h-3 bg-dark_primary;
+  @apply w-3 h-3;
+  background: rgba(139, 92, 246, 0.3) !important;
   cursor: url('./assets/cursors/cursor.cur'), pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: linear-gradient(135deg, #8B5CF6, #FF6B35) !important;
+  transform: scale(1.3) !important;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4) !important;
 }
 
 /* Additional custom cursor styles for specific components */

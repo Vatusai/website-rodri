@@ -8,7 +8,7 @@ const FloatingActionButton = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Show FAB after scrolling past hero section (500px)
+      // Show FAB after scrolling past hero section (500px)https://api.whatsapp.com/send/?phone=50683384214&text&type=phone_number&app_absent=0
       if (window.pageYOffset > 500) {
         setIsVisible(true);
       } else {
@@ -37,7 +37,7 @@ const FloatingActionButton = () => {
     {
       icon: MdEmail,
       label: "Email",
-      action: () => window.open("mailto:fabanorgo@gmail.com", "_blank"),
+      action: () => window.open("mailto:rodrigolagunasmusic@gmail.com", "_blank"),
       bgColor: "bg-gray hover:bg-blue-600",
       delay: "delay-75",
       labelColor: "text-blue-300", // Color personalizado para Email
@@ -46,7 +46,7 @@ const FloatingActionButton = () => {
     {
       icon: BsWhatsapp,
       label: "WhatsApp",
-      action: () => window.open("https://wa.me/50664559354", "_blank"),
+      action: () => window.open("https://wa.me/50683384214", "_blank"),
       bgColor: "bg-green-500 hover:bg-green-600",
       delay: "delay-100",
       labelColor: "text-green-300", // Color personalizado para WhatsApp
@@ -55,7 +55,7 @@ const FloatingActionButton = () => {
     {
       icon: MdCall,
       label: "Llamar",
-      action: () => window.open("tel:+50664559354", "_blank"),
+      action: () => window.open("tel:+50683384214", "_blank"),
       bgColor: "bg-gray hover:bg-blue-600",
       delay: "delay-150",
       labelColor: "text-yellow-300", // Color personalizado para Llamar
@@ -68,7 +68,10 @@ const FloatingActionButton = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col-reverse items-end gap-3">
+    <div 
+      className="fixed bottom-6 right-6 z-40 flex flex-col-reverse items-end gap-3 sm:bottom-4 sm:right-4"
+      style={{ maxWidth: 'calc(100vw - 12px)', boxSizing: 'border-box' }}
+    >
       {/* Action buttons */}
       {isExpanded && (
         <>
@@ -77,20 +80,24 @@ const FloatingActionButton = () => {
             return (
               <button
                 key={index}
-                onClick={item.action}
+                onClick={() => {
+                  item.action();
+                  setIsExpanded(false); // Close after action
+                }}
                 className={`
                   ${item.bgColor} ${item.delay}
-                  text-white p-3 rounded-full shadow-lg 
+                  text-white p-4 rounded-full shadow-lg 
                   transform transition-all duration-300 ease-out
                   ${isExpanded ? "scale-100 opacity-100" : "scale-0 opacity-0"}
                   hover:scale-110 hover:shadow-xl
                   group relative
+                  min-h-[44px] min-w-[44px] // Touch-friendly sizing
                 `}
                 aria-label={item.label}
               >
                 <Icon size={20} />
-                {/* Tooltip */}
-                <div className={`absolute right-full mr-3 top-1/2 transform -translate-y-1/2 ${item.tooltipBg} ${item.labelColor} text-sm px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium`}>
+                {/* Tooltip - hidden on mobile for better UX */}
+                <div className={`absolute right-full mr-3 top-1/2 transform -translate-y-1/2 ${item.tooltipBg} ${item.labelColor} text-sm px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium hidden sm:block`}>
                   {item.label}
                   <div className={`absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent ${item.tooltipBg === 'bg-blue-800' ? 'border-l-blue-800' : item.tooltipBg === 'bg-green-800' ? 'border-l-green-800' : 'border-l-purple-800'}`}></div>
                 </div>
@@ -101,7 +108,7 @@ const FloatingActionButton = () => {
           {/* Main quote button */}
           <button
             onClick={scrollToContact}
-            className="bg-dark_primary hover:bg-opacity-90 text-black px-6 py-3 rounded-full shadow-lg transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl text-sm font-semibold"
+            className="bg-dark_primary hover:bg-opacity-90 text-black px-6 py-4 rounded-full shadow-lg transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl text-sm font-semibold min-h-[44px]"
           >
             Cotización Gratis
           </button>

@@ -12,11 +12,18 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    maxWidth: "23rem",
+    maxWidth: "28rem",
     width: "90%",
+    background: "linear-gradient(135deg, #1A1A2E 0%, #16213E 100%)",
+    border: "1px solid rgba(139, 92, 246, 0.3)",
+    borderRadius: "20px",
+    padding: "2rem",
+    color: "#FFFFFF",
   },
   overlay: {
     padding: "2rem",
+    backgroundColor: "rgba(15, 15, 35, 0.8)",
+    backdropFilter: "blur(10px)",
   },
 };
 Modal.setAppElement("#root");
@@ -35,78 +42,129 @@ const Skills = () => {
   }
 
   return (
-    <section className="min-h-fit bg-bg_light_primary" id="skills">
-      {/* modal */}
+    <section className="section-pop-artist" id="skills">
+      {/* Modal - Updated with pop artist styling */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <div className="flex items-center gap-2">
-          <img className="h-10 object-contain filter invert" src={selectSkill?.logo} alt="..." />
-          <h6>{selectSkill?.name}</h6>
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+            <img 
+              className="w-6 h-6 object-contain brightness-0 invert" 
+              src={selectSkill?.logo} 
+              alt={selectSkill?.name} 
+            />
+          </div>
+          <h3 className="text-xl font-600 text-text_primary">{selectSkill?.name}</h3>
         </div>
-        <br />
-        <ul className="list-decimal px-4 font-Source sm:text-sm text-xs !leading-7">
-          <li>Me encargo de que el volumen de la Música sea el adecuado en cada situación y que la música suene cuando tiene que sonar.</li>
-          <li>Colaboro con Músicos de alto nivel que suman a la elegancia y a la exposición artistica</li>
-          <li>Sistemas de Sonido BOSE de altisima calidad, con microfonos inalámbricos incluidos en caso de ser necesario.</li>
-          <li>
-            Cualquier pieza musical, la puedo preparar para su momento especial.
-          </li>
-          <li>
-            Todos nuestos servicios son por escrito, para que ningún detalle quede al azar, y podamos brindarle la mejor experiencia.
-          </li>
-        </ul>
-        <br />
+        
+        <div className="space-y-4 mb-8">
+          <h4 className="text-lg font-500 text-accent mb-3">Professional Excellence Includes:</h4>
+          <ul className="space-y-3 text-text_secondary">
+            <li className="flex items-start gap-3">
+              <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></span>
+              <span>Volume control perfectly adapted to each moment and situation</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0"></span>
+              <span>Collaboration with high-level musicians for enhanced elegance</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-2 h-2 bg-tertiary rounded-full mt-2 flex-shrink-0"></span>
+              <span>Premium BOSE sound systems with wireless microphones included</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-2 h-2 bg-gold rounded-full mt-2 flex-shrink-0"></span>
+              <span>Custom musical arrangements prepared for your special moments</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-2 h-2 bg-pink rounded-full mt-2 flex-shrink-0"></span>
+              <span>Written agreements ensuring every detail is perfectly planned</span>
+            </li>
+          </ul>
+        </div>
+        
         <div className="flex justify-end">
-          <button onClick={closeModal} className="btn">
+          <button onClick={closeModal} className="btn-pop-secondary">
             Close
           </button>
         </div>
       </Modal>
 
-      {/* content */}
-      <div className="md:container px-5  py-14">
-        <h2 className="title" data-aos="fade-down">
-          {skills.title}
-        </h2>
-        <h4 className="subtitle" data-aos="fade-down">
-          {skills.subtitle}
-        </h4>
-        <br />
-        <div className="flex flex-wrap gap-4 justify-center">
+      {/* Main Content */}
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="glow-effect glow-effect-purple glass-text p-6 mb-4 inline-block">
+            <div className="glow-mask"></div>
+            <div className="glow-effect-content">
+              <h2 className="section-title-pop text-white" data-aos="fade-down">
+                {skills.title}
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {skills.skills_content.map((skill, i) => (
             <div
               key={i}
               data-aos="fade-up"
-              data-aos-delay={i * 400}
-              className="bg-background sm:cursor-pointer 
-               relative group w-full flex items-center
-                gap-5 p-5 max-w-sm rounded-md border-2 border-gray"
+              data-aos-delay={200 + (i * 150)}
+              className="card-pop-artist glass-card glow-effect glow-effect-orange group cursor-pointer"
+              onClick={() => {
+                setSelectSkill(skill);
+                openModal();
+              }}
             >
-              <div>
-                <img
-                  src={skill.logo}
-                  alt="..."
-                  className="w-10 object-contain filter invert group-hover:scale-125 duration-200"
-                />
-              </div>
-              <div>
-                <h6>{skill.name}</h6>
-                <p className="italic">{skill.para}</p>
-                <div
-                  onClick={() => {
-                    setSelectSkill(skill);
-                    openModal();
-                  }}
-                  className="text-xl absolute top-3 right-3"
-                >
-                  {createElement(skills.icon)}
+              <div className="glow-mask"></div>
+              <div className="glow-effect-content">
+                {/* Skill Icon */}
+                <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors duration-300">
+                  <img
+                    src={skill.logo}
+                    alt={skill.name}
+                    className="w-8 h-8 object-contain brightness-0 invert opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                  />
+                </div>
+
+                {/* Skill Info */}
+                <div className="flex-1">
+                  <h3 className="text-xl font-600 text-text_primary mb-2 group-hover:text-accent transition-colors duration-300">
+                    {skill.name}
+                  </h3>
+                  <p className="text-text_secondary leading-relaxed mb-4">
+                    {skill.para}
+                  </p>
+
+                  {/* More Info Indicator */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-accent font-500">Learn More</span>
+                    <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                      {createElement(skills.icon, { className: "w-4 h-4" })}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <div className="glass-text p-4 max-w-lg mx-auto mb-6">
+            <p className="text-white">
+              Experience of professional musical expertise
+            </p>
+          </div>
+          <a href="#services">
+            <button className="btn-pop-primary glass">
+              Explore Our Services
+            </button>
+          </a>
         </div>
       </div>
     </section>

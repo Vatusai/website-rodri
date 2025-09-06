@@ -1,62 +1,93 @@
 import { useEffect, useState } from 'react';
-import logo from '../assets/images/logo.png';
 import './Preloader.css';
 import Aos from 'aos';
 
 /**
- * Enhanced Preloader Component - Displays fancy logo animation while site assets load
+ * Text Animation Musical Preloader Component - Scrolling Text Effect
  * Features:
- * - Fancy multi-layered animations with particles
+ * - Animated text transitions with musical themes
+ * - Gradient text effects
  * - Extended loading time for better visual impact
  * - Smooth fade-out transition when loading completes
- * - Non-invasive: doesn't affect other components
+ * - AOS initialization after completion
  */
 const Preloader = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
   const [showSkipButton, setShowSkipButton] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Extended 5-second timer for logo and text animation
-    const logoTimer = setTimeout(() => {
-      setIsLoading(false);
+    // Show skip button after 3 seconds
+    const skipTimer = setTimeout(() => {
+      setShowSkipButton(true);
+    }, 3000);
+
+    // Extended 6-second timer for better UX
+    const textTimer = setTimeout(() => {
+      setFadeOut(true);
       // Initialize AOS when preloader finishes
       setTimeout(() => {
         console.log('Initializing AOS after preloader finished...');
         Aos.init({
-          duration: 1800,
-          offset: 100,
-          delay: 0,
-          once: false,
-          mirror: true,
+          duration: 1200,
+          offset: 80,
+          delay: 50,
+          once: true,
+          mirror: false,
           anchorPlacement: 'top-bottom',
         });
         Aos.refresh();
-      }, 100);
-    }, 5000);
+        setIsLoading(false);
+      }, 600);
+    }, 6000);
+
+    // Clean text animation cycle - exactly like the reference
+    const textAnimationInterval = setInterval(() => {
+      if (!document.querySelector('.preloader')) return;
+      
+      const show = document.querySelector('span[data-show]');
+      const next = show?.nextElementSibling || document.querySelector('.text-mask span:first-child');
+      const up = document.querySelector('span[data-up]');
+
+      if (up) {
+        up.removeAttribute('data-up');
+      }
+
+      if (show) {
+        show.removeAttribute('data-show');
+        show.setAttribute('data-up', '');
+      }
+
+      if (next) {
+        next.setAttribute('data-show', '');
+      }
+    }, 2000);
 
     // Cleanup
     return () => {
-      clearTimeout(logoTimer);
+      clearTimeout(textTimer);
+      clearTimeout(skipTimer);
+      clearInterval(textAnimationInterval);
     };
   }, []);
 
   // Skip button handler
   const handleSkip = () => {
-    setIsLoading(false);
+    setFadeOut(true);
     // Initialize AOS when skipping preloader
     setTimeout(() => {
       console.log('Initializing AOS after skip...');
       Aos.init({
-        duration: 1800,
-        offset: 100,
-        delay: 0,
-        once: false,
-        mirror: true,
+        duration: 1200,
+        offset: 80,
+        delay: 50,
+        once: true,
+        mirror: false,
         anchorPlacement: 'top-bottom',
       });
       Aos.refresh();
-    }, 100);
+      setIsLoading(false);
+    }, 600);
   };
 
   // Don't render preloader if loading is complete
@@ -65,28 +96,33 @@ const Preloader = () => {
   }
 
   return (
-    <div className="preloader">
-      {/* Simple logo container with elegant zoom animation */}
-      <div className="preloader-logo-simple">
-        <img 
-          src={logo} 
-          alt="Logo" 
-          className="preloader-image-large"
-          onError={(e) => {
-            // Fallback if logo doesn't load - show text instead
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
-          }}
-        />
-        {/* Fallback logo text (hidden by default) */}
-        <div className="logo-fallback-large" style={{display: 'none'}}>
-          RODRIGO LAGUNAS
+    <div className={`preloader ${fadeOut ? 'fade-out' : ''}`}>
+      {/* Text Animation Musical Preloader */}
+      <div className="text-animation-container">
+        <h2 className="preloader-title">
+          Rodrigo Lagunas creates
+          <div className="text-mask">
+            <span data-show>magical experiences.</span>
+            <span>unforgettable celebrations.</span>
+            <span>memorable moments.</span>
+            <span>artistic performances.</span>
+          </div>
+        </h2>
+        
+        {/* Artist signature */}
+        <div className="artist-signature">
+          <p>— Rodrigo Lagunas, Professional Musician and Producer</p>
         </div>
         
-        {/* Name text below logo with delayed animation */}
-        <div className="preloader-name">
-          Rodrigo Lagunas
-        </div>
+        {/* Skip button with glassmorphism */}
+        {showSkipButton && (
+          <button 
+            className="skip-button glass" 
+            onClick={handleSkip}
+          >
+            Skip Intro
+          </button>
+        )}
       </div>
     </div>
   );

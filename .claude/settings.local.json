@@ -9,7 +9,10 @@
       "WebSearch",
       "Bash(git add:*)",
       "Bash(git push:*)",
-      "WebFetch(domain:api.qrserver.com)"
+      "WebFetch(domain:api.qrserver.com)",
+      "Bash(find:*)",
+      "Bash(npm run build:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

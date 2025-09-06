@@ -1,0 +1,233 @@
+/**
+ * Moving Glowing Orbs Styles
+ * 
+ * Subtle floating orb animations with dark red, purple, and blue colors
+ * Designed to be non-invasive and complement existing design
+ */
+
+/* =============================================================================
+   CONTAINER
+   ============================================================================= */
+
+.moving-orbs-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* =============================================================================
+   MOVING ORBS
+   ============================================================================= */
+
+.moving-orb {
+  position: absolute;
+  left: var(--start-x);
+  top: var(--start-y);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  opacity: 0;
+  
+  /* Diffuse spore with soft glowing edges */
+  background: radial-gradient(
+    circle at center, 
+    var(--color) 0%,
+    transparent 60%
+  );
+  
+  /* Soft diffused glow effect */
+  box-shadow: 
+    0 0 calc(var(--size) * 1.2) var(--shadow),
+    0 0 calc(var(--size) * 2) var(--shadow),
+    0 0 calc(var(--size) * 3) rgba(255, 255, 255, 0.03);
+  
+  /* Gentle spore drift animation */
+  animation: 
+    sporeDrift var(--duration) linear infinite,
+    sporeGlow calc(var(--duration) * 0.7) ease-in-out infinite;
+  
+  /* Heavy blur for diffused spore effect */
+  filter: blur(4px);
+}
+
+/* =============================================================================
+   ANIMATIONS
+   ============================================================================= */
+
+/* Slow organic spore drift movement */
+@keyframes sporeDrift {
+  0%, 100% {
+    transform: 
+      translateX(0) 
+      translateY(0);
+  }
+  25% {
+    transform: 
+      translateX(calc(var(--direction) * var(--drift) * 20vw)) 
+      translateY(calc(var(--drift) * -15vh));
+  }
+  50% {
+    transform: 
+      translateX(calc(var(--direction) * var(--drift) * -10vw)) 
+      translateY(calc(var(--drift) * -30vh));
+  }
+  75% {
+    transform: 
+      translateX(calc(var(--direction) * var(--drift) * 15vw)) 
+      translateY(calc(var(--drift) * -20vh));
+  }
+}
+
+/* Diffuse glowing pulse effect */
+@keyframes sporeGlow {
+  0%, 100% {
+    opacity: 0.05;
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.15;
+    filter: blur(6px);
+  }
+}
+
+/* =============================================================================
+   COLOR VARIANTS
+   ============================================================================= */
+
+.orb-dark-red {
+  --base-opacity: 0.15;
+}
+
+.orb-purple {
+  --base-opacity: 0.2;
+}
+
+.orb-blue {
+  --base-opacity: 0.18;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .moving-orb {
+    /* Smaller spores on mobile */
+    width: calc(var(--size) * 0.7);
+    height: calc(var(--size) * 0.7);
+    
+    /* Reduced movement and glow */
+    animation: 
+      sporeDriftMobile var(--duration) linear infinite,
+      sporeGlowMobile calc(var(--duration) * 0.8) ease-in-out infinite;
+  }
+}
+
+@keyframes sporeDriftMobile {
+  0%, 100% {
+    transform: 
+      translateX(0) 
+      translateY(0);
+  }
+  33% {
+    transform: 
+      translateX(calc(var(--direction) * var(--drift) * 12vw)) 
+      translateY(calc(var(--drift) * -8vh));
+  }
+  66% {
+    transform: 
+      translateX(calc(var(--direction) * var(--drift) * -8vw)) 
+      translateY(calc(var(--drift) * -15vh));
+  }
+}
+
+@keyframes sporeGlowMobile {
+  0%, 100% {
+    opacity: 0.03;
+    filter: blur(3px);
+  }
+  50% {
+    opacity: 0.1;
+    filter: blur(4px);
+  }
+}
+
+@media (max-width: 480px) {
+  .moving-orb {
+    /* Very small diffuse spores on tiny screens */
+    width: calc(var(--size) * 0.5);
+    height: calc(var(--size) * 0.5);
+    
+    /* Maintain diffuse effect */
+    filter: blur(2px);
+    
+    /* Very subtle on small screens */
+    opacity: 0.6;
+  }
+}
+
+/* =============================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .moving-orb {
+    animation: sporeStaticGlow 6s ease-in-out infinite;
+    transform: none;
+    filter: blur(3px);
+  }
+}
+
+@keyframes sporeStaticGlow {
+  0%, 100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: light) {
+  .moving-orb {
+    opacity: 0.5;
+  }
+}
+
+/* High contrast mode - hide orbs */
+@media (prefers-contrast: high) {
+  .moving-orbs-container {
+    display: none;
+  }
+}
+
+/* =============================================================================
+   DEPTH LAYERS
+   ============================================================================= */
+
+/* Create depth with different diffusion levels */
+.moving-orb:nth-child(odd) {
+  filter: blur(5px);
+  opacity: 0.7;
+}
+
+.moving-orb:nth-child(even) {
+  filter: blur(3px);
+  opacity: 0.9;
+}
+
+/* Subtle size variations for organic feel */
+.moving-orb:nth-child(1),
+.moving-orb:nth-child(5) {
+  transform: scale(0.8);
+}
+
+.moving-orb:nth-child(3),
+.moving-orb:nth-child(7) {
+  transform: scale(1.2);
+}

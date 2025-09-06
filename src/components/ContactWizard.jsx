@@ -141,7 +141,7 @@ const ContactWizard = () => {
                     ? "bg-green-500 text-white"
                     : isActive
                     ? "bg-gray text-white ring-4 ring-white"
-                    : "bg-gray-200 text-gray-500"
+                    : "bg-gray-600 text-gray-300"
                 }`}
               >
                 {isCompleted ? (
@@ -163,11 +163,11 @@ const ContactWizard = () => {
               
               <div className="mt-2 text-center">
                 <p className={`text-xs font-medium ${
-                  isActive ? "text-black" : isCompleted ? "text-green-600" : "text-gray-500"
+                  isActive ? "text-white" : isCompleted ? "text-green-400" : "text-gray-400"
                 }`}>
                   {step.title}
                 </p>
-                <p className="text-white text-gray-400">{step.description}</p>
+                <p className="text-gray-400">{step.description}</p>
               </div>
             </div>
           );
@@ -305,16 +305,16 @@ const ContactWizard = () => {
                     "3 Músicos: Violin, Guitarrista y Cantante",
                     "Ensamble Mixto: Indiquenos en Requerimientos",
                   ].map((service, index) => (
-                    <label key={index} className="flex items-start space-x-3 p-3 rounded-lg border border-gray-300 hover:bg-gray-50 cursor-pointer transition-colors">
+                    <label key={index} className="flex items-start space-x-3 p-3 rounded-lg border border-gray-600 hover:bg-gray-800 cursor-pointer transition-colors bg-gray-900">
                       <input
                         type="radio"
                         name="MMERGE5"
                         value={service}
                         checked={formData.MMERGE5 === service}
                         onChange={handleChange}
-                        className="mt-1 w-4 h-4 text-dark_primary focus:ring-dark_primary border-gray-300"
+                        className="mt-1 w-4 h-4 text-accent focus:ring-accent border-gray-500 bg-gray-700"
                       />
-                      <span className="text-gray-700 text-sm flex-1">{service}</span>
+                      <span className="text-white text-sm flex-1">{service}</span>
                     </label>
                   ))}
                 </div>
@@ -379,8 +379,8 @@ const ContactWizard = () => {
                 />
               </div>
               
-              <div className="bg-black p-4 rounded-lg">
-                <h4 className="font-medium text-base mb-2">Contáctame si tienes alguna duda:</h4>
+              <div className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                <h4 className="font-medium text-base mb-2 text-white">Contáctame si tienes alguna duda:</h4>
                 <div className="space-y-2">
                   {Contact.social_media.map((item, index) => {
                     const Icon = item.icon;
@@ -409,25 +409,25 @@ const ContactWizard = () => {
   };
 
   return (
-    <section className="bg-dark_primary text-dark_primary" id="contact">
+    <section className="bg-black text-white" id="contact-wizard">
       <Toaster position="top-center" />
-      <div className="md:container px-5 py-16">
-        <div className="text-center mb-12">
-          <h2 className="title !text-black" data-aos="fade-down">
+      <div className="md:container px-5 py-16 bg-black">
+        <div className="text-center mb-12 bg-transparent">
+          <h2 className="title !text-white" data-aos="fade-down">
             {Contact.title}
           </h2>
-          <h4 className="subtitle !text-black" data-aos="fade-down">
+          <h4 className="subtitle !text-white" data-aos="fade-down">
             {Contact.subtitle}
           </h4>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-bg_light_primary rounded-2xl shadow-2xl overflow-hidden">
-            <div className="bg-gradient-to-r from-dark_primary to-gray px-8 py-6">
+        <div className="max-w-4xl mx-auto bg-transparent">
+          <div className="bg-black border border-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+            <div className="bg-gradient-to-r from-black to-gray-900 px-8 py-6">
               <ProgressIndicator />
             </div>
             
-            <form onSubmit={handleSubmit} className="p-8">
+            <form onSubmit={handleSubmit} className="p-8 bg-black">
               {renderStepContent()}
               
               <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-200">
@@ -437,7 +437,7 @@ const ContactWizard = () => {
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
                     currentStep === 1
                       ? "invisible"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                   }`}
                   disabled={currentStep === 1}
                 >
@@ -449,7 +449,7 @@ const ContactWizard = () => {
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="flex items-center gap-2 px-6 py-3 bg-dark_primary text-black rounded-lg font-medium hover:bg-opacity-90 transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-100 transition-all"
                   >
                     Siguiente
                     <MdArrowForward size={20} />

@@ -30,26 +30,33 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth scroll to section
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId.replace("#", ""));
-    if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for navbar height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
+  // Smooth scroll to section or handle external link
+  const handleNavigation = (item) => {
+    if (item.external && item.url) {
+      // Open external link in new tab
+      window.open(item.url, '_blank', 'noopener,noreferrer');
+    } else {
+      // Handle internal navigation
+      const element = document.getElementById(item.link.replace("#", ""));
+      if (element) {
+        const offsetTop = element.offsetTop - 80; // Account for navbar height
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
     }
     setIsMobileMenuOpen(false);
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 navbar-pop-artist transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-gray"
-          : "bg-transparent"
+          ? "glass shadow-2xl border-b border-accent/20"
+          : "glass-text"
       }`}
+      style={{ maxWidth: '100vw', boxSizing: 'border-box' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -57,10 +64,9 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection("#home")}
-              className={`text-2xl font-Croissant font-normal transition-colors duration-300 ${
-                isScrolled ? "text-dark_primary" : "text-dark_primary"
-              }`}
-              style={{ letterSpacing: '0.05em' }}
+              className={`text-2xl font-Display font-700 transition-all duration-300 artist-name ${
+                isScrolled ? "text-text_primary" : "text-text_primary"
+              } hover:scale-105`}
             >
               Rodrigo Lagunas
             </button>
@@ -70,23 +76,19 @@ const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {nav.map((item, index) => {
-                const sectionId = item.link.replace("#", "");
-                const isActive = activeSection === sectionId;
+                const sectionId = item.external ? item.link : item.link.replace("#", "");
+                const isActive = !item.external && activeSection === sectionId;
                 const Icon = item.icon;
 
                 return (
                   <button
                     key={index}
-                    onClick={() => scrollToSection(item.link)}
-                    className={`group flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    onClick={() => handleNavigation(item)}
+                    className={`nav-item-pop group flex items-center px-4 py-2 rounded-full text-sm font-500 transition-all duration-300 ${
                       isActive
-                        ? isScrolled
-                          ? "bg-gray text-dark_primary shadow-md"
-                          : "bg-gray/20 text-dark_primary backdrop-blur-sm"
-                        : isScrolled
-                        ? "text-dark_primary hover:bg-gray-100 hover:text-accent"
-                        : "text-dark_primary/80 hover:bg-gray/10 hover:text-dark_primary"
-                    }`}
+                        ? "glass bg-accent text-white shadow-lg shadow-accent/20"
+                        : "text-text_secondary hover:text-text_primary glass-text"
+                    } ${item.external ? "hover:bg-accent/10" : ""}`}
                   >
                     <Icon
                       className={`mr-2 transition-transform duration-300 ${
@@ -96,15 +98,35 @@ const Navbar = () => {
                     />
                     <span className="capitalize">
                       {sectionId === "home"
-                        ? "Inicio"
+                        ? "Home"
                         : sectionId === "skills"
-                        ? "Habilidades"
+                        ? "Expertise"
+                        : sectionId === "bio"
+                        ? "Bio"
                         : sectionId === "services"
-                        ? "Servicios"
+                        ? "Services"
                         : sectionId === "projects"
-                        ? "Proyectos"
-                        : "Contacto"}
+                        ? "Performances"
+                        : "Contact"}
                     </span>
+                    {item.external && (
+                      <svg
+                        className="ml-1 w-3 h-3 opacity-60"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"
+                          clipRule="evenodd"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
                   </button>
                 );
               })}
@@ -115,12 +137,12 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`inline-flex items-center justify-center p-2 rounded-md transition-colors duration-300 ${
+              className={`inline-flex items-center justify-center p-2 rounded-full transition-all duration-300 ${
                 isScrolled
-                  ? "text-dark_primary hover:bg-gray/20"
-                  : "text-dark_primary hover:bg-gray/10"
+                  ? "text-text_primary hover:bg-accent/10 border border-accent/20"
+                  : "text-text_primary hover:bg-accent/10 border border-accent/20"
               }`}
-              aria-label="Menú principal"
+              aria-label="Main menu"
             >
               <svg
                 className={`h-6 w-6 transition-transform duration-300 ${
@@ -159,39 +181,59 @@ const Navbar = () => {
             : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background/95 backdrop-blur-md shadow-lg border-t border-gray">
+        <div className="px-4 pt-4 pb-6 space-y-2 sm:px-6 glass shadow-2xl border-t border-accent/20">
           {nav.map((item, index) => {
-            const sectionId = item.link.replace("#", "");
-            const isActive = activeSection === sectionId;
+            const sectionId = item.external ? item.link : item.link.replace("#", "");
+            const isActive = !item.external && activeSection === sectionId;
             const Icon = item.icon;
 
             return (
               <button
                 key={index}
-                onClick={() => scrollToSection(item.link)}
-                className={`group w-full flex items-center px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
+                onClick={() => handleNavigation(item)}
+                className={`group w-full flex items-center px-4 py-3 rounded-2xl text-base font-500 transition-all duration-300 ${
                   isActive
-                    ? "bg-accent text-background shadow-md"
-                    : "text-dark_primary hover:bg-gray hover:text-background"
+                    ? "bg-accent text-white shadow-lg shadow-accent/20"
+                    : "text-text_secondary hover:bg-accent/10 hover:text-text_primary"
                 }`}
               >
                 <Icon
-                  className={`mr-3 transition-transform duration-300 ${
+                  className={`mr-4 transition-transform duration-300 ${
                     isActive ? "scale-110" : "group-hover:scale-105"
                   }`}
                   size={20}
                 />
-                <span className="capitalize">
+                <span className="capitalize flex-1 text-left">
                   {sectionId === "home"
-                    ? "Inicio"
+                    ? "Home"
                     : sectionId === "skills"
-                    ? "Habilidades"
+                    ? "Expertise"
+                    : sectionId === "bio"
+                    ? "Bio"
                     : sectionId === "services"
-                    ? "Servicios"
+                    ? "Services"
                     : sectionId === "projects"
-                    ? "Proyectos"
-                    : "Contacto"}
+                    ? "Performances"
+                    : "Contact"}
                 </span>
+                {item.external && (
+                  <svg
+                    className="w-4 h-4 opacity-60"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"
+                      clipRule="evenodd"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                )}
               </button>
             );
           })}

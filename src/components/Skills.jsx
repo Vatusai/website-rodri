@@ -153,19 +153,6 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="glass-text p-4 max-w-lg mx-auto mb-6">
-            <p className="text-white">
-              Experience of professional musical expertise
-            </p>
-          </div>
-          <a href="#services">
-            <button className="btn-pop-primary glass">
-              Explore Our Services
-            </button>
-          </a>
-        </div>
       </div>
     </section>
   );

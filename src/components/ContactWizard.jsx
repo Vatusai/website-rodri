@@ -50,6 +50,12 @@ const ContactWizard = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Only submit if we're on the final step
+    if (currentStep !== 4) {
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -88,7 +94,11 @@ const ContactWizard = () => {
     }
   };
 
-  const nextStep = () => {
+  const nextStep = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     if (validateStep(currentStep)) {
       setCurrentStep(currentStep + 1);
     } else {
@@ -297,13 +307,10 @@ const ContactWizard = () => {
                 </label>
                 <div className="space-y-3">
                   {[
-                    "Violin Solista",
-                    "2 Músicos: Guitarrista-Cantante y Violin",
-                    "2 Músicos: Duo Violin y Cello",
-                    "3 Músicos: Trio de Cuerdas",
-                    "2 Músicos: Violin y Arpa",
-                    "3 Músicos: Violin, Guitarrista y Cantante",
-                    "Ensamble Mixto: Indiquenos en Requerimientos",
+                    "Rodrigo como Cantante-Guitarrista",
+                    "2 Músicos: Rodrigo Cantante-Guitarrista y Percusionista",
+                    "3 Músicos: Rodrigo Cantante-Guitarrista, Percusión y Bajo",
+                    "4 Músicos: Rodrigo Cantante, Guitarrista, Percusión y Bajo",
                   ].map((service, index) => (
                     <label key={index} className="flex items-start space-x-3 p-3 rounded-lg border border-gray-600 hover:bg-gray-800 cursor-pointer transition-colors bg-gray-900">
                       <input

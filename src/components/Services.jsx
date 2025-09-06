@@ -108,26 +108,6 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-12 sm:mt-16">
-          <div className="glass-text p-4 max-w-lg mx-auto mb-6">
-            <p className="text-white text-base sm:text-lg">
-              Ready to elevate your event with professional violin music?
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact">
-              <button className="btn-pop-primary glass w-full sm:w-auto min-h-[44px]">
-                Get Custom Quote
-              </button>
-            </a>
-            <a href="#projects">
-              <button className="btn-pop-secondary glass w-full sm:w-auto min-h-[44px]">
-                View Performances
-              </button>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

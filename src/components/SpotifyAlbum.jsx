@@ -49,7 +49,7 @@ const SpotifyAlbum = () => {
                     Featured Album
                   </h3>
                   <p className="text-white/80 text-sm sm:text-base">
-                    Professional violin performances and compositions
+                    Professional musical performances and compositions
                   </p>
                 </div>
 

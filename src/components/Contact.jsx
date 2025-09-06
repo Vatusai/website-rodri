@@ -154,13 +154,10 @@ const handleSubmit = async (e) => {
                   />
                   <strong className="block mb-3 text-base text-white font-medium">Servicio a Contratar</strong>
                   {[
-                    "Violin Solista",
-                    "2 Músicos: Guitarrista-Cantante y Violin",
-                    "2 Músicos: Duo Violin y Cello",
-                    "3 Músicos: Trio de Cuerdas",
-                    "2 Músicos: Violin y Arpa",
-                    "3 Músicos: Violin, Guitarrista y Cantante",
-                    "Ensamble Mixto: Indiquenos en Requerimientos",
+                    "Rodrigo como Cantante-Guitarrista",
+                    "2 Músicos: Rodrigo Cantante-Guitarrista y Percusionista",
+                    "3 Músicos: Rodrigo Cantante-Guitarrista, Percusión y Bajo",
+                    "4 Músicos: Rodrigo Cantante, Guitarrista, Percusión y Bajo",
                   ].map((service, index) => (
                     <div key={index} className="flex items-center mb-2">
                       <input

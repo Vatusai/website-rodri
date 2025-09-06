@@ -49,6 +49,18 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // Smooth scroll to section (for logo button)
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId.replace("#", ""));
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Account for navbar height
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 navbar-pop-artist transition-all duration-300 ${
@@ -64,9 +76,9 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection("#home")}
-              className={`text-2xl font-Display font-700 transition-all duration-300 artist-name ${
+              className={`text-2xl font-Display font-700 transition-all duration-300 transform artist-name ${
                 isScrolled ? "text-text_primary" : "text-text_primary"
-              } hover:scale-105`}
+              } hover:scale-105 hover:text-accent hover:drop-shadow-lg`}
             >
               Rodrigo Lagunas
             </button>
@@ -84,19 +96,19 @@ const Navbar = () => {
                   <button
                     key={index}
                     onClick={() => handleNavigation(item)}
-                    className={`nav-item-pop group flex items-center px-4 py-2 rounded-full text-sm font-500 transition-all duration-300 ${
+                    className={`nav-item-pop group flex items-center px-4 py-2 rounded-full text-sm font-500 transition-all duration-300 transform ${
                       isActive
-                        ? "glass bg-accent text-white shadow-lg shadow-accent/20"
-                        : "text-text_secondary hover:text-text_primary glass-text"
-                    } ${item.external ? "hover:bg-accent/10" : ""}`}
+                        ? "glass bg-accent text-white shadow-lg shadow-accent/20 scale-105"
+                        : "text-text_secondary hover:text-text_primary glass-text hover:scale-105 hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/10"
+                    } ${item.external ? "hover:bg-accent/15" : ""}`}
                   >
                     <Icon
-                      className={`mr-2 transition-transform duration-300 ${
-                        isActive ? "scale-110" : "group-hover:scale-105"
+                      className={`mr-2 transition-all duration-300 ${
+                        isActive ? "scale-110 text-white" : "group-hover:scale-110 group-hover:text-accent"
                       }`}
                       size={18}
                     />
-                    <span className="capitalize">
+                    <span className="capitalize transition-all duration-300 group-hover:text-accent">
                       {sectionId === "home"
                         ? "Home"
                         : sectionId === "skills"
@@ -111,7 +123,7 @@ const Navbar = () => {
                     </span>
                     {item.external && (
                       <svg
-                        className="ml-1 w-3 h-3 opacity-60"
+                        className="ml-1 w-3 h-3 opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -137,10 +149,10 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`inline-flex items-center justify-center p-2 rounded-full transition-all duration-300 ${
+              className={`inline-flex items-center justify-center p-2 rounded-full transition-all duration-300 transform hover:scale-110 ${
                 isScrolled
-                  ? "text-text_primary hover:bg-accent/10 border border-accent/20"
-                  : "text-text_primary hover:bg-accent/10 border border-accent/20"
+                  ? "text-text_primary hover:bg-accent/10 border border-accent/20 hover:border-accent/40 hover:text-accent hover:shadow-lg hover:shadow-accent/10"
+                  : "text-text_primary hover:bg-accent/10 border border-accent/20 hover:border-accent/40 hover:text-accent hover:shadow-lg hover:shadow-accent/10"
               }`}
               aria-label="Main menu"
             >

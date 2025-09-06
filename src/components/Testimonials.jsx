@@ -140,34 +140,6 @@ const Testimonials = () => {
           </Swiper>
         </div>
 
-        {/* Bottom Call to Action */}
-        <div className="text-center mt-16">
-          <div className="glass-card p-6 max-w-2xl mx-auto mb-8">
-            <p className="text-white text-lg mb-4">
-              Join our growing list of satisfied clients who trusted us with their special moments
-            </p>
-            <div className="flex items-center justify-center gap-8 text-sm text-white">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-accent rounded-full"></div>
-                <span>1000+ Events</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-gold rounded-full"></div>
-                <span>5-Star Reviews</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-tertiary rounded-full"></div>
-                <span>20+ Years Experience</span>
-              </div>
-            </div>
-          </div>
-          
-          <a href="#contact">
-            <button className="btn-pop-primary glass">
-              Share Your Vision
-            </button>
-          </a>
-        </div>
       </div>
     </section>
   );

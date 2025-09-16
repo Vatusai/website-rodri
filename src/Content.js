@@ -34,7 +34,13 @@ import { BiUser } from "react-icons/bi";
 import { RiServiceLine, RiProjectorLine } from "react-icons/ri";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
 
-export const content = {
+// import translations
+import { translations } from "./translations/translations";
+
+export const getContent = (language = 'es') => {
+  const t = translations[language];
+  
+  return {
   nav: [
     {
       link: "#home",
@@ -64,102 +70,102 @@ export const content = {
     },
   ],
   hero: {
-    title: "Rodrigo Lagunas",
-    firstName: "RODRIGO",
-    LastName: "LAGUNAS",
-    btnText: "Solicitar Cotización Gratis",
+    title: t.hero.title,
+    firstName: t.hero.firstName,
+    LastName: t.hero.lastName,
+    btnText: t.hero.btnText,
     image: Hero_person,
     hero_content: [
       {
         count: "15+",
-        text: "Años de experiencia en Arte Escénico",
+        text: t.hero.experience,
       },
       {
         count: "1000+",
-        text: "Eventos realizados con éxito",
+        text: t.hero.events,
       },
     ],
   },
   skills: {
-    title: "Habilidades",
-    subtitle: "Lo que hago",
+    title: t.skills.title,
+    subtitle: t.skills.subtitle,
     skills_content: [
       {
-        name: "Ambiente Musical",
-        para: "Me aseguro de que el ambiente sea el adecuado para cada evento",
+        name: t.skills.items.ambiente.name,
+        para: t.skills.items.ambiente.para,
         logo: figma,
       },
       {
-        name: "Gestión de Musicos",
-        para: "Organizo y coordino talentos",
+        name: t.skills.items.gestion.name,
+        para: t.skills.items.gestion.para,
         logo: nodejs,
       },
       {
-        name: "Sonido de alta Calidad",
-        para: "Bose S1 Pro, Bose S1 Pro+, Bose L1 Compact",
+        name: t.skills.items.sonido.name,
+        para: t.skills.items.sonido.para,
         logo: ps,
       },
       {
-        name: "Arreglista Musical",
-        para: "Preparo música solicitada por el cliente",
+        name: t.skills.items.arreglista.name,
+        para: t.skills.items.arreglista.para,
         logo: reactjs,
       },
       {
-        name: "Contratos y Acuerdos",
-        para: "Redacto contratos y acuerdos para eventos y presentaciones",
+        name: t.skills.items.contratos.name,
+        para: t.skills.items.contratos.para,
         logo: sketch,
       },
       {
-        name: "Ceremonias Católicas",
-        para: "Preparo música para ceremonias católicas",
+        name: t.skills.items.ceremonias.name,
+        para: t.skills.items.ceremonias.para,
         logo: python,
       },
     ],
     icon: MdArrowForward,
   },
   services: {
-    title: "Servicios",
-    subtitle: "Lo que ofrecemos",
+    title: t.services.title,
+    subtitle: t.services.subtitle,
     service_content: [
       {
-        title: "Ceremonias de Boda",
-        para: "Ofrecemos un servicio exclusivo para ceremonias de bodas, creando un ambiente elegante y emotivo. Incluye ambientación musical previa para recibir a sus invitados, así como la interpretación de piezas seleccionadas para cada momento especial de la ceremonia. ",
+        title: t.services.items.bodas.title,
+        para: t.services.items.bodas.para,
         logo: services_logo1,
       },
       {
-        title: "Coctel/Recepción",
-        para: "Ofrecemos un servicio de Música en vivo para cócteles y recepciones, creando un ambiente cálido y sofisticado mientras sus invitados disfrutan del evento. Interpretamos un repertorio versátil que abarca desde música moderna hasta piezas solicitadas por el cliente, adaptándonos a la atmósfera que desea para su celebración.",
+        title: t.services.items.coctel.title,
+        para: t.services.items.coctel.para,
         logo: services_logo2,
       },
       {
-        title: "Corporativos",
-        para: "Elevamos la elegancia de sus eventos corporativos con un servicio de Música en vivo, ideal para recepciones, inauguraciones, cenas de gala y celebraciones empresariales. Ofrecemos un repertorio cuidadosamente seleccionado que se adapta a la imagen y el tono de su evento, creando una experiencia distinguida y memorable para sus invitados.",
+        title: t.services.items.corporativos.title,
+        para: t.services.items.corporativos.para,
         logo: services_logo3,
       },
     ],
   },
   Projects: {
-    title: "Proyectos",
-    subtitle: "Lo que he hecho",
+    title: t.projects.title,
+    subtitle: t.projects.subtitle,
     image: person_project,
     project_content: [
       {
-        title: "Acompañar momentos especiales",
+        title: t.projects.items.momentos,
         image: project1,
       },
       {
-        title: "Agrupaciones musicales",
+        title: t.projects.items.agrupaciones,
         image: project2,
       },
       {
-        title: "Director de Bandas",
+        title: t.projects.items.director,
         image: project3,
       },
     ],
   },
   Testimonials: {
-    title: "Testimonios",
-    subtitle: "Lo que dicen los clientes",
+    title: t.testimonials.title,
+    subtitle: t.testimonials.subtitle,
     testimonials_content: [
       {
         review:
@@ -188,45 +194,49 @@ export const content = {
     ],
   },
   Hireme: {
-    title: "Contratenos",
-    subtitle: "Para su Evento",
+    title: t.hireme.title,
+    subtitle: t.hireme.subtitle,
     image1: Hireme_person,
     image2: Hireme_person2,
-    para: "Cada nota que interpreto es el resultado de años de dedicación y perfeccionamiento, con el propósito de crear experiencias únicas en cada evento. Mi trayectoria musical es un viaje de crecimiento y descubrimiento, donde cada melodía refleja la riqueza de diversas culturas y el poder universal de la música. Llene el formulario para ponerme en contacto con usted.",
-    btnText: "Solicitar Cotización Gratis",
+    para: t.hireme.para,
+    btnText: t.hireme.btnText,
   },
   Contact: {
-    title: "Formulario para Eventos",
-    subtitle: "Cotización y Reservación",
+    title: t.contact.title,
+    subtitle: t.contact.subtitle,
     social_media: [
       {
-        text: "rodrigolagunasmusic@gmail.com",
+        text: t.contact.social.email,
         icon: GrMail,
         link: "mailto:rodrigolagunasmusic@gmail.com",
       },
       {
-        text: "+506 8338 4214",
+        text: t.contact.social.phone,
         icon: MdCall,
         link: "https://wa.me/50683384214",
       },
       {
-        text: "YouTube Channel",
+        text: t.contact.social.youtube,
         icon: BsYoutube,
         link: "https://www.youtube.com/@rodrigolagunasmusico9689",
       },
       {
-        text: "RodrigoLagunasMusic",
+        text: t.contact.social.instagram,
         icon: BsInstagram,
         link: "https://www.instagram.com/RodrigoLagunasMusic",
       },
       {
-        text: "Facebook Page",
+        text: t.contact.social.facebook,
         icon: BsFacebook,
         link: "https://www.facebook.com/RodrigoLagunasMusic",
       },
     ],
   },
   Footer: {
-    text: "All © Copy Right Reserved 2025",
+    text: t.footer.text,
   },
+  };
 };
+
+// For backward compatibility, export default content in Spanish
+export const content = getContent('es');

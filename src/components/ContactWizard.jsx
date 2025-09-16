@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { content } from "../Content";
+import { getContent } from "../Content";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations/translations";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { 
@@ -16,6 +18,9 @@ import { MdCall } from "react-icons/md";
 import { BsInstagram } from "react-icons/bs";
 
 const ContactWizard = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const content = getContent(language);
   const { Contact } = content;
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -87,7 +92,7 @@ const ContactWizard = () => {
       setCurrentStep(1);
       
     } catch (error) {
-      toast.error("Error al enviar la solicitud. Intenta de nuevo.");
+      toast.error(t.contactForm.errors.submitError);
       console.error("Error al enviar los datos:", error);
     } finally {
       setIsSubmitting(false);
@@ -102,7 +107,7 @@ const ContactWizard = () => {
     if (validateStep(currentStep)) {
       setCurrentStep(currentStep + 1);
     } else {
-      toast.error("Por favor completa los campos requeridos");
+      toast.error(t.contactForm.errors.requiredFields);
     }
   };
 
@@ -114,22 +119,22 @@ const ContactWizard = () => {
   const steps = [
     { 
       number: 1, 
-      title: "Datos de contacto", 
+      title: t.contactForm.steps.contact, 
       icon: MdPerson,
     },
     { 
       number: 2, 
-      title: "Detalles del Evento", 
+      title: t.contactForm.steps.event, 
       icon: MdEvent,
     },
     { 
       number: 3, 
-      title: "Servicios Musicales", 
+      title: t.contactForm.steps.services, 
       icon: MdMusicNote,
     },
     { 
       number: 4, 
-      title: "Presupuesto y Extras", 
+      title: t.contactForm.steps.budget, 
       icon: MdAttachMoney,
     },
   ];
@@ -192,12 +197,12 @@ const ContactWizard = () => {
       case 1:
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-white mb-4">Información Personal</h3>
+            <h3 className="text-xl font-semibold text-white mb-4">{t.contactForm.stepContent.personalInfo}</h3>
             
             <div className="space-y-4">
               <div>
                 <label htmlFor="EMAIL" className="block text-sm font-medium text-gray-200 mb-2">
-                  Correo Electrónico
+                  {t.contactForm.stepContent.labels.email}
                 </label>
                 <input
                   type="email"
@@ -206,13 +211,13 @@ const ContactWizard = () => {
                   value={formData.EMAIL}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
-                  placeholder="Email de la persona que nos contrata"
+                  placeholder={t.contactForm.placeholders.email}
                 />
               </div>
               
               <div>
                 <label htmlFor="MMERGE2" className="block text-sm font-medium text-gray-200 mb-2">
-                  Nombre y Apellido
+                  {t.contactForm.stepContent.labels.name}
                 </label>
                 <input
                   type="text"
@@ -221,13 +226,13 @@ const ContactWizard = () => {
                   value={formData.MMERGE2}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
-                  placeholder="Quién nos contrata?"
+                  placeholder={t.contactForm.placeholders.name}
                 />
               </div>
               
               <div>
                 <label htmlFor="MMERGE14" className="block text-sm font-medium text-gray-200 mb-2">
-                  Teléfono o WhatsApp
+                  {t.contactForm.stepContent.labels.phone}
                 </label>
                 <input
                   type="tel"
@@ -236,7 +241,7 @@ const ContactWizard = () => {
                   value={formData.MMERGE14}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
-                  placeholder="Le contactaremos por este medio"
+                  placeholder={t.contactForm.placeholders.phone}
                 />
               </div>
             </div>
@@ -246,12 +251,12 @@ const ContactWizard = () => {
       case 2:
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-white mb-4">Detalles del Evento</h3>
+            <h3 className="text-xl font-semibold text-white mb-4">{t.contactForm.stepContent.eventDetails}</h3>
             
             <div className="space-y-4">
               <div>
                 <label htmlFor="MMERGE13" className="block text-sm font-medium text-gray-200 mb-2">
-                  Fecha del Evento
+                  {t.contactForm.stepContent.labels.eventDate}
                 </label>
                 <input
                   type="date"
@@ -265,7 +270,7 @@ const ContactWizard = () => {
               
               <div>
                 <label htmlFor="MMERGE10" className="block text-sm font-medium text-gray-200 mb-2">
-                  Hora del Evento
+                  {t.contactForm.stepContent.labels.eventTime}
                 </label>
                 <input
                   type="time"
@@ -279,7 +284,7 @@ const ContactWizard = () => {
               
               <div>
                 <label htmlFor="MMERGE7" className="block text-sm font-medium text-gray-200 mb-2">
-                  Lugar del Evento
+                  {t.contactForm.stepContent.labels.eventLocation}
                 </label>
                 <input
                   type="text"
@@ -288,7 +293,7 @@ const ContactWizard = () => {
                   value={formData.MMERGE7}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
-                  placeholder="Dirección del evento"
+                  placeholder={t.contactForm.placeholders.address}
                 />
               </div>
             </div>
@@ -298,20 +303,15 @@ const ContactWizard = () => {
       case 3:
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-white mb-4">Servicios Musicales</h3>
+            <h3 className="text-xl font-semibold text-white mb-4">{t.contactForm.stepContent.musicalServices}</h3>
             
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-200 mb-3">
-                  Servicio a Contratar
+                  {t.contactForm.stepContent.labels.serviceToHire}
                 </label>
                 <div className="space-y-3">
-                  {[
-                    "Rodrigo como Cantante-Guitarrista",
-                    "2 Músicos: Rodrigo Cantante-Guitarrista y Percusionista",
-                    "3 Músicos: Rodrigo Cantante-Guitarrista, Percusión y Bajo",
-                    "4 Músicos: Rodrigo Cantante, Guitarrista, Percusión y Bajo",
-                  ].map((service, index) => (
+                  {t.contactForm.options.services.map((service, index) => (
                     <label key={index} className="flex items-start space-x-3 p-3 rounded-lg border border-gray-600 hover:bg-gray-800 cursor-pointer transition-colors bg-gray-900">
                       <input
                         type="radio"
@@ -329,18 +329,23 @@ const ContactWizard = () => {
               
               <div>
                 <label htmlFor="MMERGE9" className="block text-sm font-medium text-gray-200 mb-2">
-                  Duración del Evento
+                  {t.contactForm.stepContent.labels.eventDuration}
                 </label>
                 <select
                   name="MMERGE9"
                   id="MMERGE9"
                   value={formData.MMERGE9}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-600 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-white bg-gray-900 text-base appearance-none"
+                  style={{
+                    backgroundColor: '#111827',
+                    color: '#ffffff',
+                    border: '1px solid #4b5563'
+                  }}
                 >
-                  <option value="">Seleccione la duración...</option>
-                  {["1H", "2H", "3H", "1H o 2H", "Lo indicaré en Requerimientos. Aún no estoy seguro/a"].map((option, index) => (
-                    <option key={index} value={option}>
+                  <option value="" style={{ backgroundColor: '#111827', color: '#ffffff' }}>{t.contactForm.stepContent.labels.selectDuration}</option>
+                  {t.contactForm.options.duration.map((option, index) => (
+                    <option key={index} value={option} style={{ backgroundColor: '#111827', color: '#ffffff' }}>
                       {option}
                     </option>
                   ))}
@@ -353,12 +358,12 @@ const ContactWizard = () => {
       case 4:
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-white mb-4">Presupuesto y Detalles Adicionales</h3>
+            <h3 className="text-xl font-semibold text-white mb-4">{t.contactForm.stepContent.budgetAndDetails}</h3>
             
             <div className="space-y-4">
               <div>
                 <label htmlFor="MMERGE11" className="block text-sm font-medium text-gray-200 mb-2">
-                  Presupuesto Estimado (Opcional)
+                  {t.contactForm.stepContent.labels.estimatedBudget}
                 </label>
                 <input
                   type="text"
@@ -367,13 +372,13 @@ const ContactWizard = () => {
                   value={formData.MMERGE11}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base"
-                  placeholder="₡ colones o $ dólares"
+                  placeholder={t.contactForm.placeholders.budget}
                 />
               </div>
               
               <div>
                 <label htmlFor="MMERGE8" className="block text-sm font-medium text-gray-200 mb-2">
-                  Preguntas o Requerimientos Especiales
+                  {t.contactForm.stepContent.labels.specialRequirements}
                 </label>
                 <textarea
                   name="MMERGE8"
@@ -382,12 +387,12 @@ const ContactWizard = () => {
                   onChange={handleChange}
                   rows={4}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dark_primary focus:border-transparent text-gray-900 text-base resize-none"
-                  placeholder="Cuéntanos sobre canciones específicas, detalles del evento, o cualquier pregunta que tengas..."
+                  placeholder={t.contactForm.placeholders.requirements}
                 />
               </div>
               
               <div className="bg-gray-900 p-4 rounded-lg border border-gray-700">
-                <h4 className="font-medium text-base mb-2 text-white">Contáctame si tienes alguna duda:</h4>
+                <h4 className="font-medium text-base mb-2 text-white">{t.contactForm.stepContent.labels.contactHelp}</h4>
                 <div className="space-y-2">
                   {Contact.social_media.map((item, index) => {
                     const Icon = item.icon;
@@ -449,7 +454,7 @@ const ContactWizard = () => {
                   disabled={currentStep === 1}
                 >
                   <MdArrowBack size={20} />
-                  Anterior
+                  {t.contactForm.buttons.previous}
                 </button>
                 
                 {currentStep < 4 ? (
@@ -458,7 +463,7 @@ const ContactWizard = () => {
                     onClick={nextStep}
                     className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-100 transition-all"
                   >
-                    Siguiente
+                    {t.contactForm.stepContent.nextButton}
                     <MdArrowForward size={20} />
                   </button>
                 ) : (
@@ -467,7 +472,7 @@ const ContactWizard = () => {
                     disabled={isSubmitting}
                     className="flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-all disabled:opacity-50"
                   >
-                    {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
+                    {isSubmitting ? t.contactForm.buttons.submitting : t.contactForm.buttons.submit}
                     {!isSubmitting && <MdArrowForward size={20} />}
                   </button>
                 )}

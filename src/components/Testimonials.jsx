@@ -1,4 +1,5 @@
-import { content } from "../Content";
+import { getContent } from "../Content";
+import { useLanguage } from "../contexts/LanguageContext";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,6 +13,8 @@ import { useState } from "react";
 const isMobile = window.innerWidth <= 768;
 
 const Testimonials = () => {
+  const { language } = useLanguage();
+  const content = getContent(language);
   const { Testimonials } = content;
   const [activeIndex, setActiveIndex] = useState(0);
   

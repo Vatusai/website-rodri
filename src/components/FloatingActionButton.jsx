@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import { MdCall, MdEmail } from "react-icons/md";
 import { BsWhatsapp } from "react-icons/bs";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations/translations";
 
 const FloatingActionButton = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -36,7 +40,7 @@ const FloatingActionButton = () => {
   const contactActions = [
     {
       icon: MdEmail,
-      label: "Email",
+      label: t.floatingButton.labels.email,
       action: () => window.open("mailto:rodrigolagunasmusic@gmail.com", "_blank"),
       bgColor: "bg-gray hover:bg-blue-600",
       delay: "delay-75",
@@ -45,7 +49,7 @@ const FloatingActionButton = () => {
     },
     {
       icon: BsWhatsapp,
-      label: "WhatsApp",
+      label: t.floatingButton.labels.whatsapp,
       action: () => window.open("https://wa.me/50683384214", "_blank"),
       bgColor: "bg-green-500 hover:bg-green-600",
       delay: "delay-100",
@@ -54,7 +58,7 @@ const FloatingActionButton = () => {
     },
     {
       icon: MdCall,
-      label: "Llamar",
+      label: t.floatingButton.labels.call,
       action: () => window.open("tel:+50683384214", "_blank"),
       bgColor: "bg-gray hover:bg-blue-600",
       delay: "delay-150",
@@ -126,7 +130,7 @@ const FloatingActionButton = () => {
           ${isExpanded ? "rotate-45" : "rotate-0"}
           group relative
         `}
-        aria-label={isExpanded ? "Cerrar menú" : "Opciones de contacto"}
+        aria-label={isExpanded ? t.floatingButton.ariaLabels.close : t.floatingButton.ariaLabels.open}
       >
         <svg
           className="w-6 h-6 transition-transform duration-300"

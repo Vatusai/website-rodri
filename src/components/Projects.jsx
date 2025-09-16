@@ -1,4 +1,5 @@
-import { content } from "../Content";
+import { getContent } from "../Content";
+import { useLanguage } from "../contexts/LanguageContext";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,6 +10,8 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 
 const Projects = () => {
+  const { language } = useLanguage();
+  const content = getContent(language);
   const { Projects } = content;
   return (
     <section className="section-pop-artist alternate" id="projects">
@@ -139,24 +142,6 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Bottom Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-text_secondary mb-6 text-lg">
-            See how we can make your event truly memorable
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#testimonials">
-              <button className="btn-pop-primary">
-                Client Stories
-              </button>
-            </a>
-            <a href="#contact">
-              <button className="btn-pop-secondary">
-                Book Performance
-              </button>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

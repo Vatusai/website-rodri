@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { content } from "../Content";
+import { getContent } from "../Content";
+import { useLanguage } from "../contexts/LanguageContext";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios"; // Import Axios for making HTTP requests
 import "./formStyles.css";
@@ -9,6 +10,8 @@ import { BsInstagram } from "react-icons/bs";
 import { MdArrowForward } from "react-icons/md";
 
 const Contact = () => {
+  const { language } = useLanguage();
+  const content = getContent(language);
   const { Contact } = content;
 
   // State to manage form data

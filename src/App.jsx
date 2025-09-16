@@ -22,8 +22,14 @@ import MovingOrbs from "./components/MovingOrbs";
 import { initGlowEffect } from "./utils/glowEffect";
 // Mobile centering enforcement utility
 import { initMobileCentering } from "./utils/mobileCenter";
+// Language Context Provider
+import { LanguageProvider, useLanguage } from "./contexts/LanguageContext";
+import { translations } from "./translations/translations";
 
-const App = () => {
+const AppContent = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   // Initialize effects when component mounts
   useEffect(() => {
     // Initialize mobile centering first (highest priority)
@@ -66,15 +72,23 @@ const App = () => {
       <footer className="section-pop-artist py-8 text-center border-t border-accent/20">
         <div className="container mx-auto px-6">
           <h3 className="artist-name text-2xl mb-2">RODRIGO LAGUNAS</h3>
-          <p className="text-text_muted text-sm">© All Rights Reserved 2025 • Professional Musician</p>
+          <p className="text-text_muted text-sm">{t.footer.subtitle}</p>
           <div className="flex items-center justify-center gap-6 mt-4 text-xs text-text_muted">
-            <span>🎻 Elegant Performances</span>
-            <span>🎼 Custom Arrangements</span>
-            <span>🎵 Professional Excellence</span>
+            <span>{t.footer.features.performances}</span>
+            <span>{t.footer.features.arrangements}</span>
+            <span>{t.footer.features.excellence}</span>
           </div>
         </div>
       </footer>
     </div>
+  );
+};
+
+const App = () => {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 };
 

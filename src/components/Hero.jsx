@@ -1,7 +1,12 @@
 // Hero.jsx
-import { content } from "../Content";
+import { getContent } from "../Content";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations/translations";
 
 const Hero = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const content = getContent(language);
   const { hero } = content;
 
   return (
@@ -34,7 +39,7 @@ const Hero = () => {
               <div className="glow-mask"></div>
               <div className="glow-effect-content">
                 <p className="hero-tagline text-white leading-relaxed">
-                  Bringing musical excellence to your most important moments with professional performances.
+                  {t.hero.tagline}
                 </p>
               </div>
             </div>
@@ -87,7 +92,7 @@ const Hero = () => {
 
               {/* Floating badge - mobile optimized */}
               <div className="absolute top-2 right-2 sm:top-4 sm:right-4 glass text-white px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 rounded-full text-xs sm:text-sm font-medium">
-                 Professional Musician
+                 {t.hero.professionalBadge}
               </div>
             </div>
           </div>

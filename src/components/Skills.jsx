@@ -1,6 +1,8 @@
 // import content
 import { createElement, useState } from "react";
-import { content } from "../Content";
+import { getContent } from "../Content";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations/translations";
 // import modal package
 import Modal from "react-modal";
 
@@ -29,6 +31,9 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const Skills = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const content = getContent(language);
   const { skills } = content;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectSkill, setSelectSkill] = useState(null);
@@ -61,34 +66,25 @@ const Skills = () => {
         </div>
         
         <div className="space-y-4 mb-8">
-          <h4 className="text-lg font-500 text-accent mb-3">Professional Excellence Includes:</h4>
+          <h4 className="text-lg font-500 text-accent mb-3">{t.skills.modal.excellenceTitle}</h4>
           <ul className="space-y-3 text-text_secondary">
-            <li className="flex items-start gap-3">
-              <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></span>
-              <span>Volume control perfectly adapted to each moment and situation</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0"></span>
-              <span>Collaboration with high-level musicians for enhanced elegance</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-2 h-2 bg-tertiary rounded-full mt-2 flex-shrink-0"></span>
-              <span>Premium BOSE sound systems with wireless microphones included</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-2 h-2 bg-gold rounded-full mt-2 flex-shrink-0"></span>
-              <span>Custom musical arrangements prepared for your special moments</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-2 h-2 bg-pink rounded-full mt-2 flex-shrink-0"></span>
-              <span>Written agreements ensuring every detail is perfectly planned</span>
-            </li>
+            {t.skills.modal.features.map((feature, index) => (
+              <li key={index} className="flex items-start gap-3">
+                <span className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
+                  index === 0 ? 'bg-accent' :
+                  index === 1 ? 'bg-secondary' :
+                  index === 2 ? 'bg-tertiary' :
+                  index === 3 ? 'bg-gold' : 'bg-pink'
+                }`}></span>
+                <span>{feature}</span>
+              </li>
+            ))}
           </ul>
         </div>
         
         <div className="flex justify-end">
           <button onClick={closeModal} className="btn-pop-secondary">
-            Close
+            {t.skills.modal.closeBtn}
           </button>
         </div>
       </Modal>
@@ -142,7 +138,7 @@ const Skills = () => {
 
                   {/* More Info Indicator */}
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-accent font-500">Learn More</span>
+                    <span className="text-sm text-accent font-500">{t.skills.modal.learnMore}</span>
                     <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300">
                       {createElement(skills.icon, { className: "w-4 h-4" })}
                     </div>

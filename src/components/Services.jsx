@@ -1,6 +1,11 @@
-import { content } from "../Content";
+import { getContent } from "../Content";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations/translations";
 
 const Services = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const content = getContent(language);
   const { services } = content;
   
   return (
@@ -60,20 +65,20 @@ const Services = () => {
                 <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                 {i === 0 && (
                   <>
-                    <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs sm:text-sm font-500">Professional Setup</span>
-                    <span className="px-3 py-1 bg-gold/10 text-gold rounded-full text-xs sm:text-sm font-500">Premium Experience</span>
+                    <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs sm:text-sm font-500">{t.services.badges.professionalSetup}</span>
+                    <span className="px-3 py-1 bg-gold/10 text-gold rounded-full text-xs sm:text-sm font-500">{t.services.badges.premiumExperience}</span>
                   </>
                 )}
                 {i === 1 && (
                   <>
-                    <span className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-xs sm:text-sm font-500">Custom Arrangements</span>
-                    <span className="px-3 py-1 bg-tertiary/10 text-tertiary rounded-full text-xs sm:text-sm font-500">Live Performance</span>
+                    <span className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-xs sm:text-sm font-500">{t.services.badges.customArrangements}</span>
+                    <span className="px-3 py-1 bg-tertiary/10 text-tertiary rounded-full text-xs sm:text-sm font-500">{t.services.badges.livePerformance}</span>
                   </>
                 )}
                 {i === 2 && (
                   <>
-                    <span className="px-3 py-1 bg-pink/10 text-pink rounded-full text-xs sm:text-sm font-500">Elegant Atmosphere</span>
-                    <span className="px-3 py-1 bg-cyan/10 text-cyan rounded-full text-xs sm:text-sm font-500">Background Music</span>
+                    <span className="px-3 py-1 bg-pink/10 text-pink rounded-full text-xs sm:text-sm font-500">{t.services.badges.elegantAtmosphere}</span>
+                    <span className="px-3 py-1 bg-cyan/10 text-cyan rounded-full text-xs sm:text-sm font-500">{t.services.badges.backgroundMusic}</span>
                   </>
                 )}
                 </div>
@@ -84,7 +89,7 @@ const Services = () => {
                     href="#contact"
                     className="inline-flex items-center text-accent hover:text-secondary transition-colors duration-300 font-500 text-sm sm:text-base"
                   >
-                    Learn More
+                    {t.services.learnMore}
                     <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>

@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import { content } from "../Content";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations/translations";
 
 const Navbar = () => {
   const { nav } = content;
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language];
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -84,6 +88,18 @@ const Navbar = () => {
             </button>
           </div>
 
+          {/* Language Toggle Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center px-3 py-2 rounded-full text-sm font-500 transition-all duration-300 transform hover:scale-105 glass-text hover:bg-accent/10 hover:shadow-lg hover:shadow-accent/10 text-text_secondary hover:text-accent border border-accent/20 hover:border-accent/40"
+              title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+            >
+              <span className="text-base mr-2">{language === 'es' ? '🇪🇸' : '🇺🇸'}</span>
+              <span className="uppercase font-600">{language === 'es' ? 'ES' : 'EN'}</span>
+            </button>
+          </div>
+
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
@@ -110,16 +126,16 @@ const Navbar = () => {
                     />
                     <span className="capitalize transition-all duration-300 group-hover:text-accent">
                       {sectionId === "home"
-                        ? "Home"
+                        ? t.nav.home
                         : sectionId === "skills"
-                        ? "Expertise"
+                        ? t.nav.skills
                         : sectionId === "bio"
-                        ? "Bio"
+                        ? t.nav.bio
                         : sectionId === "services"
-                        ? "Services"
+                        ? t.nav.services
                         : sectionId === "projects"
-                        ? "Performances"
-                        : "Contact"}
+                        ? t.nav.projects
+                        : t.nav.contact}
                     </span>
                     {item.external && (
                       <svg
@@ -145,8 +161,16 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile Language Toggle and Menu Button */}
+          <div className="md:hidden flex items-center space-x-2">
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center px-2 py-1 rounded-full text-xs font-500 transition-all duration-300 transform hover:scale-105 glass-text hover:bg-accent/10 text-text_secondary hover:text-accent border border-accent/20"
+              title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+            >
+              <span className="text-sm mr-1">{language === 'es' ? '🇪🇸' : '🇺🇸'}</span>
+              <span className="uppercase font-600 text-xs">{language === 'es' ? 'ES' : 'EN'}</span>
+            </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-full transition-all duration-300 transform hover:scale-110 ${
@@ -217,16 +241,16 @@ const Navbar = () => {
                 />
                 <span className="capitalize flex-1 text-left">
                   {sectionId === "home"
-                    ? "Home"
+                    ? t.nav.home
                     : sectionId === "skills"
-                    ? "Expertise"
+                    ? t.nav.skills
                     : sectionId === "bio"
-                    ? "Bio"
+                    ? t.nav.bio
                     : sectionId === "services"
-                    ? "Services"
+                    ? t.nav.services
                     : sectionId === "projects"
-                    ? "Performances"
-                    : "Contact"}
+                    ? t.nav.projects
+                    : t.nav.contact}
                 </span>
                 {item.external && (
                   <svg
